@@ -13,7 +13,8 @@ class Config:
     FINNHUB_KEY = os.getenv("FINNHUB_KEY")
     NEWSDATA_KEY = os.getenv("NEWSDATA_KEY")
     WORLDNEWSAPI_KEY = os.getenv("WORLDNEWSAPI_KEY")
-
+    FIRECRAWL_API_KEY = os.getenv("FIRECRAWL_API_KEY")
+    
     # Configurable News Provider
     USE_NEWSAPI = env_bool("USE_NEWSAPI")
     USE_NEWSDATA = env_bool("USE_NEWSDATA")

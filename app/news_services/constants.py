@@ -3,6 +3,8 @@ MARKETAUX_BASE_URL = "https://api.marketaux.com/v1/news/all"
 FINNHUB_BASE_URL = "https://finnhub.io/api/v1/news"
 NEWSDATA_BASE_URL = "https://newsdata.io/api/1/news"
 WORLDNEWSAPI_BASE_URL = "https://api.worldnewsapi.com/top-news"
+FIRECRAWL_BASE_URL = "https://api.firecrawl.dev/v1"
 
+FIRECRAWL_TIMEOUT = 15
 DEFAULT_TIMEOUT = 10
 MAX_RETRIES = 3
