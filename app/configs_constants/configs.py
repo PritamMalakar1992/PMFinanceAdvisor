@@ -20,3 +20,6 @@ class Configs:
     USE_WORLDNEWSAPI = env_bool("USE_WORLDNEWSAPI")
     USE_MARKETAUX = env_bool("USE_MARKETAUX")
     USE_FINNHUB = env_bool("USE_FINNHUB")
+
+    SCREENER_USER = os.getenv("SCREENER_USER")
+    SCREENER_PSWD = os.getenv("SCREENER_PSWD")
