@@ -318,8 +318,14 @@ flowchart TD
 ## 🔁 Continuous Learning Loop
 
 ```mermaid
-cycle
-    News → Insight → Selection → Allocation → Trade → Performance → Re-evaluation
+flowchart LR
+    A[News] --> B[Insight]
+    B --> C[Selection]
+    C --> D[Allocation]
+    D --> E[Trade]
+    E --> F[Performance]
+    F --> G[Re-evaluation]
+    G --> A
 ```
 
 
