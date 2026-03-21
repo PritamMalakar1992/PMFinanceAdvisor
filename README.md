@@ -10,13 +10,13 @@ This project is a **fully autonomous AI-driven investment advisory system** desi
 
 The system combines:
 
-* 📊 Fundamental screening (client-configurable)
-* 📰 Real-time global + Indian news intelligence
-* 🌐 Web-scale information discovery
-* 🧠 LLM-powered reasoning & strategy simulation
-* 🔁 Multi-iteration consensus-based stock selection
-* 💼 Dynamic portfolio allocation & rebalancing
-* 📈 Continuous performance tracking via virtual trading
+- 📊 Fundamental screening (client-configurable)
+- 📰 Real-time global + Indian news intelligence
+- 🌐 Web-scale information discovery
+- 🧠 LLM-powered reasoning & strategy simulation
+- 🔁 Multi-iteration consensus-based stock selection
+- 💼 Dynamic portfolio allocation & rebalancing
+- 📈 Continuous performance tracking via virtual trading
 
 ---
 
@@ -32,12 +32,12 @@ The system mimics how experienced investors operate:
 
 ## 🎯 Objectives
 
-* Identify high-quality stocks using fundamental filters
-* Incorporate macro + micro news signals
-* Apply proven investment strategies
-* Reduce randomness via multi-iteration consensus
-* Simulate real-world portfolio performance
-* Enable future transition to real capital deployment
+- Identify **high-quality stocks** using **fundamental filters**
+- Incorporate **macro + micro news signals**
+- Apply **proven investor strategies**
+- Reduce randomness via **multi-iteration consensus**
+- Simulate **real-world performance**
+- Enable **future transition to real capital deployment**
 
 ---
 
@@ -71,14 +71,16 @@ flowchart TD
     P --> H
 ```
 
+
+
 ---
 
 ## 🔍 Step 1: Stock Universe & Fundamental Screening
 
 ### 📥 Data Source
 
-* NSE / BSE listed stocks
-* Currently extracted via scraping (temporary approach due to lack of free structured APIs)
+- NSE / BSE listed stocks
+- Currently extracted via scraping (temporary approach due to lack of free structured APIs)
 
 ---
 
@@ -98,7 +100,7 @@ filters:
 
 ### 🎯 Output
 
-* Filtered universe → ~50 stocks
+- Filtered universe → ~50 stocks
 
 ---
 
@@ -108,29 +110,28 @@ filters:
 
 #### APIs:
 
-* NEWSAPI
-* MARKETAUX
-* FINNHUB
-* NEWSDATA
-* WORLDNEWSAPI
+- NEWSAPI
+- MARKETAUX
+- FINNHUB
+- NEWSDATA
+- WORLDNEWSAPI
 
 #### Categories:
 
-* Global headlines
-* Financial & economic news
-* India-specific news
-* Business & market news
+- Global headlines
+- Financial & economic news
+- India-specific news
+- Business & market news
 
 ---
 
 ### 🔎 Web Discovery
 
-* Firecrawl-based search
-* Extracts:
-
-  * Company-specific updates
-  * Sector-level changes
-  * Hidden or niche signals
+- Firecrawl-based search
+- Extracts:
+  - Company-specific updates
+  - Sector-level changes
+  - Hidden or niche signals
 
 ---
 
@@ -138,14 +139,13 @@ filters:
 
 The system processes raw data to:
 
-* Remove noise
-* Extract impactful events
-* Identify:
-
-  * Market-moving signals
-  * Sentiment shifts
-  * Risk triggers
-  * Opportunity catalysts
+- Remove noise
+- Extract impactful events
+- Identify:
+  - Market-moving signals
+  - Sentiment shifts
+  - Risk triggers
+  - Opportunity catalysts
 
 ---
 
@@ -155,21 +155,20 @@ The system processes raw data to:
 
 Includes multiple investment philosophies:
 
-* Value investing
-* Growth investing
-* Macro-driven allocation
-* Momentum-based reasoning
+- Value investing
+- Growth investing
+- Macro-driven allocation
+- Momentum-based reasoning
 
 ---
 
 ### ⚙️ Model Configurability
 
-* Multiple LLMs supported via flags
-* Strategy selection modes:
-
-  * Single strategy
-  * Multi-strategy
-  * Weighted hybrid
+- Multiple LLMs supported via flags
+- Strategy selection modes:
+  - Single strategy
+  - Multi-strategy
+  - Weighted hybrid
 
 ---
 
@@ -177,21 +176,19 @@ Includes multiple investment philosophies:
 
 ### 🔄 Process
 
-* Run selection **N times (configurable)**
-* Each iteration:
-
-  * Independently analyzes the same dataset
-  * Produces a set of stock picks
+- Run selection **N times (configurable)**
+- Each iteration:
+  - Independently analyzes the same dataset
+  - Produces a set of stock picks
 
 ---
 
 ### 🧮 Consensus Mechanism
 
-* Count frequency of selected stocks
-* Rank based on:
-
-  * Selection frequency
-  * Confidence score
+- Count frequency of selected stocks
+- Rank based on:
+  - Selection frequency
+  - Confidence score
 
 ---
 
@@ -209,7 +206,7 @@ Includes multiple investment philosophies:
 
 ### 💰 Input
 
-* Total capital (e.g., ₹10,000)
+- Total capital (e.g., ₹10,000)
 
 ---
 
@@ -217,9 +214,9 @@ Includes multiple investment philosophies:
 
 The system determines:
 
-* Risk distribution
-* Conviction level
-* Diversification
+- Risk distribution
+- Conviction level
+- Diversification
 
 ---
 
@@ -244,23 +241,21 @@ The system determines:
 
 ### 📥 Execution
 
-* Simulates buying at current market price
-* Records:
-
-  * Stock
-  * Price
-  * Quantity
-  * Timestamp
+- Simulates buying at current market price
+- Records:  
+  - Stock
+  - Price
+  - Quantity
+  - Timestamp
 
 ---
 
 ### 🗃 Storage
 
-* Database or file-based storage
-* Separate logs for:
-
-  * Daily trades
-  * Portfolio snapshots
+- Database or file-based storage
+- Separate logs for:
+  - Daily trades
+  - Portfolio snapshots
 
 ---
 
@@ -268,10 +263,9 @@ The system determines:
 
 ### 📊 Daily Evaluation
 
-* Compare:
-
-  * Previous buy price
-  * Current market price
+- Compare:
+  - Previous buy price
+  - Current market price
 
 ---
 
@@ -285,10 +279,10 @@ Return = (Current Price - Buy Price) × Quantity
 
 ### 📅 Metrics
 
-* Daily return
-* Cumulative return
-* Portfolio growth
-* Strategy performance
+- Daily return
+- Cumulative return
+- Portfolio growth
+- Strategy performance
 
 ---
 
@@ -296,9 +290,9 @@ Return = (Current Price - Buy Price) × Quantity
 
 ### 📥 Inputs
 
-* Current portfolio
-* Latest news signals
-* Updated analysis
+- Current portfolio
+- Latest news signals
+- Updated analysis
 
 ---
 
@@ -312,13 +306,15 @@ flowchart TD
     C -->|No| E[Hold]
 ```
 
+
+
 ---
 
 ### 🔁 Actions
 
-* Add new stocks
-* Remove weak performers
-* Adjust allocation
+- Add new stocks
+- Remove weak performers
+- Adjust allocation
 
 ---
 
@@ -329,40 +325,42 @@ cycle
     News → Insight → Selection → Allocation → Trade → Performance → Re-evaluation
 ```
 
+
+
 ---
 
 ## ⚡ Key Features
 
-* Client-configurable screening filters
-* Multi-source news intelligence
-* Web-scale discovery
-* Strategy-driven LLM reasoning
-* Multi-iteration consensus selection
-* Intelligent portfolio allocation
-* Virtual trading simulation
-* Performance tracking
-* Daily rebalancing
+- Client-configurable screening filters
+- Multi-source news intelligence
+- Web-scale discovery
+- Strategy-driven LLM reasoning
+- Multi-iteration consensus selection
+- Intelligent portfolio allocation
+- Virtual trading simulation
+- Performance tracking
+- Daily rebalancing
 
 ---
 
 ## 🛠️ Tech Stack
 
-* Python (async architecture)
-* Pydantic (data validation)
-* AsyncIO (concurrency)
-* LLM integration (multi-model support)
-* Web scraping + crawling
-* REST APIs (news providers)
-* Database / file storage
+- Python (async architecture)
+- Pydantic (data validation)
+- AsyncIO (concurrency)
+- LLM integration (multi-model support)
+- Web scraping + crawling
+- REST APIs (news providers)
+- Database / file storage
 
 ---
 
 ## ⚠️ Current Limitations
 
-* No official fundamental data API (scraping dependency)
-* No real-time trading
-* No intraday or derivatives support
-* News latency vs high-frequency systems
+- No official fundamental data API (scraping dependency)
+- No real-time trading
+- No intraday or derivatives support
+- News latency vs high-frequency systems
 
 ---
 
@@ -370,32 +368,32 @@ cycle
 
 ### 🌍 Market Expansion
 
-* US (NASDAQ, NYSE)
-* European and Asian markets
+- US (NASDAQ, NYSE)
+- European and Asian markets
 
 ---
 
 ### 📊 Advanced Analytics
 
-* Technical indicators (RSI, MACD)
-* Risk-adjusted metrics
-* Factor investing
+- Technical indicators (RSI, MACD)
+- Risk-adjusted metrics
+- Factor investing
 
 ---
 
 ### 🧠 AI Enhancements
 
-* Reinforcement learning loop
-* Adaptive strategy selection
-* Memory-based reasoning
+- Reinforcement learning loop
+- Adaptive strategy selection
+- Memory-based reasoning
 
 ---
 
 ### 💰 Production Deployment
 
-* Broker API integration
-* Live trading execution
-* Risk management system
+- Broker API integration
+- Live trading execution
+- Risk management system
 
 ---
 
@@ -419,22 +417,24 @@ sequenceDiagram
     T->>L: Feedback Loop
 ```
 
+
+
 ---
 
 ## 🧾 Summary
 
 This system is:
 
-* A reasoning engine
-* A market-aware intelligence system
-* A continuously evolving investment loop
+- A reasoning engine
+- A market-aware intelligence system
+- A continuously evolving investment loop
 
 It:
 
-* Filters intelligently
-* Thinks strategically
-* Acts consistently
-* Learns continuously
+- Filters intelligently
+- Thinks strategically
+- Acts consistently
+- Learns continuously
 
 ---
 
@@ -461,3 +461,4 @@ MIT License
 ## 💡 Final Thought
 
 > “Alpha comes not from more data, but from better interpretation of data.”
+
