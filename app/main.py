@@ -1,15 +1,12 @@
+from app.news_services.news_injest_services import NewsAPIService, MarketauxService, FinnhubService, NewsDataService, WorldNewsAPIService
+from app.stock_services.nse_stock_info_service import NseService
+from app.stock_services.yahoo_stock_info_service import StockService
+from app.stock_services.nse_stock_info_service import NseService
+from app.utilities.json_utiliti import save_json, save_json_without_index
+from app.utilities.firecrawl_utiliti import FirecrawlService
+from .configs_constants.configs import Configs
 import asyncio
-from cgitb import reset
 import sys
-from app.news_services.services import NewsAPIService, MarketauxService, FinnhubService, NewsDataService, WorldNewsAPIService
-from app.stock_services import nse_service
-from app.stock_services.stock_service import StockService
-from app.stock_services.nse_service import NSEService
-
-from app.utils.jsonutils import save_news
-from app.utils.firecrawl_service import FirecrawlService
-
-from app.news_services.config import Config
 
 async def main():
     if hasattr(sys.stdout, "reconfigure"):
@@ -22,48 +19,23 @@ async def main():
     worldnewsapi = WorldNewsAPIService()
     firecrawlservice = FirecrawlService()
     stockService = StockService()
-    nse_service = NSEService()
+    nse_service = NseService()
 
     API_TASKS = {
-        "USE_NEWSAPI": newsapi.StartInjestFromNewsAPI,
-        "USE_NEWSDATA": newsdata.StartInjestFromNewsData,
-        "USE_MARKETAUX": marketaux.StartInjestFromMarketauxAPI,
-        "USE_FINNHUB": finnhub.StartInjestFromFinnhubAPI,
-        "USE_WORLDNEWSAPI": worldnewsapi.StartInjestFromWorldNewsAPI,
+        "USE_NEWSAPI": newsapi.start_injest_from_newsapi,
+        "USE_NEWSDATA": newsdata.start_injest_from_newsdata,
+        "USE_MARKETAUX": marketaux.start_injest_from_marketauxapi,
+        "USE_FINNHUB": finnhub.start_injest_from_finnhubapi,
+        "USE_WORLDNEWSAPI": worldnewsapi.start_injest_from_worldnewsapi,
     }
 
     tasks = [
         func()
         for key, func in API_TASKS.items()
-        if getattr(Config, key, False)
+        if getattr(Configs, key, False)
     ]
 
     results = await asyncio.gather(*tasks, return_exceptions=True)
-
-    #print(await stockService.IndexInfo());
-
-    #res1 = await firecrawlservice.FirecrawlSearch("India stock market news", 5)
-    #res2 = await firecrawlservice.FirecrawlScrape("https://example.com")
-    #res3 = await firecrawlservice.FirecrawlCrawl("https://example.com", limit=3)
-    #res4 = await firecrawlservice.FirecrawlBrowse("https://example.com")
-
-    #print(res1)
-
-    #print(await nse_service.getMarketStatus())
-    #print(await nse_service.getAllIndices())
-    print(await nse_service.getEquityStockIndices('BANKNIFTY'))
-
-    """
-    print(await nse_service.getAllIndices())
-    print(await nse_service.getEquityStockIndices())
-    print(await nse_service.getQuoteEquity("INFY"))
-    print(await nse_service.getQuoteTradeInfo("TCS"))
-    print(await nse_service.getTopGainers())
-    print(await nse_service.getTopLosers())
-    """
-    snapshot = await nse_service.getMarketSnapshot()
-    print(snapshot)
-
     combined = [item for sublist in results for item in sublist]
 
     #for news in combined[:10]:
@@ -71,10 +43,34 @@ async def main():
         #print(news)
     
     if combined:
-        save_news(combined)
+        save_json(combined)
         print(f"Saved {len(combined)} articles.")
-    else:
-        print("No news to save.")
+
+
+    #print(await stockService.index_info_from_yahoo());
+    #print(await stockService.stock_details_from_yahoo());
+    #print(await stockService.stock_details_from_yahoo());
+    
+    #print(await firecrawlservice.firecrawl_search("India stock market news", 5))
+    #print(await firecrawlservice.firecrawl_scrape("https://example.com"))
+    #print(await firecrawlservice.firecrawl_crawl("https://example.com", limit=3))
+    #print(await firecrawlservice.firecrawl_browse("https://example.com"))
+
+    firecrawl_search_data = await firecrawlservice.firecrawl_search("India stock market news", 5)
+    firecrawl_search_json_data = [item.__dict__ for item in firecrawl_search_data]
+    save_json_without_index(firecrawl_search_json_data,'firecrawl_search_data')
+
+    #print(await nse_service.get_market_status_from_nse())
+    #print(await nse_service.get_all_indices_from_nse())
+    #print(await nse_service.get_equity_stock_indices_from_nse())
+    #print(await nse_service.get_quote_equity_from_nse("INFY"))
+    #print(await nse_service.get_quote_trade_info_from_nse("TCS"))
+    #print(await nse_service.get_top_losers_from_nse())
+    #print(await nse_service.get_top_losers_from_nse())
+    #print(await nse_service.get_market_snapshot_from_nse())
+
+    market_status_data=await nse_service.get_market_status_from_nse()
+    save_json_without_index(market_status_data,'market_status_data')
 
 if __name__ == "__main__":
     asyncio.run(main())

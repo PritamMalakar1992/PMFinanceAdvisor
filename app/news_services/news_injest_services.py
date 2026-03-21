@@ -1,16 +1,13 @@
-import asyncio
-import logging
 from typing import List, Dict, Optional
 from datetime import date as Date, datetime, timezone
+from tenacity import retry, stop_after_attempt, wait_exponential
+from ..models.news_data import News
+from ..configs_constants.configs import Configs
+from ..configs_constants import constants as C
 
 import httpx
-from tenacity import retry, stop_after_attempt, wait_exponential
-
-from .newsdata import News
-
-from .config import Config
-from . import constants as C
-
+import asyncio
+import logging
 
 logging.basicConfig(
     level=logging.INFO,
@@ -133,7 +130,7 @@ class NewsDataService:
 
     async def _fetch(self, country: str, category: str) -> List[Dict]:
         params = {
-            "apikey": Config.NEWSDATA_KEY,
+            "apikey": Configs.NEWSDATA_KEY,
             "country": country,
             "category": category,
             "language": "en"
@@ -169,7 +166,7 @@ class NewsDataService:
         data = await self._fetch("in", "business")
         return format_news("newsdata", "finance", data)
 
-    async def StartInjestFromNewsData(self) -> Dict[str, List]:
+    async def start_injest_from_newsdata(self) -> Dict[str, List]:
         results=await asyncio.gather(
             self._newsDataAPIWorldHeadline(),
             self._newsDataAPIWorldFinance(),
@@ -187,7 +184,7 @@ class NewsAPIService:
         params = {
             "country": country,
             "category": category,
-            "apiKey": Config.NEWSAPI_KEY
+            "apiKey": Configs.NEWSAPI_KEY
         }
 
         try:
@@ -214,7 +211,7 @@ class NewsAPIService:
     async def _newsAPIIndiaFinance(self):
         return format_news("newsapi", "finance", await self._fetch("in", "business"))    
 
-    async def StartInjestFromNewsAPI(self) -> Dict[str, List]:
+    async def start_injest_from_newsapi(self) -> Dict[str, List]:
         results=await asyncio.gather(
             self._newsAPIWorldHeadline(),
             self._newsAPIWorldBusiness(),
@@ -231,7 +228,7 @@ class MarketauxService:
 
     async def _fetch(self, country: Optional[str] = None) -> List[Dict]:
         params = {
-            "api_token": Config.MARKETAUX_KEY,
+            "api_token": Configs.MARKETAUX_KEY,
             "limit": 10,
             "language": "en"
         }
@@ -263,7 +260,7 @@ class MarketauxService:
     async def _marketauxAPIIndiaFinance(self):
         return format_news("marketaux", "finance", await self._fetch("in"))
 
-    async def StartInjestFromMarketauxAPI(self) -> Dict[str, List]:
+    async def start_injest_from_marketauxapi(self) -> Dict[str, List]:
         results=await asyncio.gather(
             self._marketauxAPIWorldHeadline(),
             self._marketauxAPIWorldFinance(),
@@ -280,7 +277,7 @@ class FinnhubService:
     async def _fetch(self) -> List[Dict]:
         params = {
             "category": "general",
-            "token": Config.FINNHUB_KEY
+            "token": Configs.FINNHUB_KEY
         }
 
         try:
@@ -309,7 +306,7 @@ class FinnhubService:
     async def _finnhubAPIIndiaFinance(self):
         return format_news("finnhub", "finance", self._filter_india(await self._fetch()))
 
-    async def StartInjestFromFinnhubAPI(self) -> Dict[str, List]:
+    async def start_injest_from_finnhubapi(self) -> Dict[str, List]:
         results=await asyncio.gather(
             self._finnhubAPIWorldHeadline(),
             self._finnhubAPIWorldFinance(),
@@ -327,7 +324,7 @@ class WorldNewsAPIService:
     async def _search_news(self, country: str) -> List[Dict]:
 
         params = {
-            "api-key": Config.WORLDNEWSAPI_KEY,
+            "api-key": Configs.WORLDNEWSAPI_KEY,
             "source-country": country,
             "language": "en",
             "category": "business,technology"
@@ -357,7 +354,7 @@ class WorldNewsAPIService:
     async def _top_news(self, country: str) -> List[Dict]:
 
         params = {
-            "api-key": Config.WORLDNEWSAPI_KEY,
+            "api-key": Configs.WORLDNEWSAPI_KEY,
             "source-country": country,
             "language": "en"
         }
@@ -404,7 +401,7 @@ class WorldNewsAPIService:
         data = await self._top_news(country)
         return format_news("worldnewsapi", "headline", data)
 
-    async def StartInjestFromWorldNewsAPI(self) -> Dict[str, List]:
+    async def start_injest_from_worldnewsapi(self) -> Dict[str, List]:
         results=await asyncio.gather(
             self._worldNewsAPIWorldHeadline(),
             self._worldNewsAPIWorldBusFin(),            

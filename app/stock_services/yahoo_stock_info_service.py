@@ -1,7 +1,7 @@
-import asyncio
-import yfinance as yf
 from typing import List, Dict
 import logging
+import asyncio
+import yfinance as yf
 
 logger = logging.getLogger(__name__)
 
@@ -12,7 +12,7 @@ async def run_in_thread(func, *args, **kwargs):
 
 class StockService:
 
-    async def IndexInfo(self, symbol: str = "^NSEI") -> Dict:
+    async def index_info_from_yahoo(self, symbol: str = "^NSEI") -> Dict:
         try:
             ticker = yf.Ticker(symbol)
 
@@ -36,8 +36,7 @@ class StockService:
             logger.exception(f"YahooIndexInfo error: {e}")
             return {}
 
-
-    async def StockDetails(self, symbol: str = "RELIANCE.NS") -> Dict:
+    async def stock_details_from_yahoo(self, symbol: str = "RELIANCE.NS") -> Dict:
         try:
             ticker = yf.Ticker(symbol)
 
@@ -66,7 +65,7 @@ class StockService:
             logger.exception(f"YahooStockDetails error: {e}")
             return {}
 
-    async def StockHistoricalDetails(self, symbol: str = "RELIANCE.NS", period: str = "5y") -> List[Dict]:
+    async def stock_historical_ddetails_from_yahoo(self, symbol: str = "RELIANCE.NS", period: str = "5y") -> List[Dict]:
         try:
             ticker = yf.Ticker(symbol)
 

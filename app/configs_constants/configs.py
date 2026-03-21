@@ -1,5 +1,4 @@
 import os
-import string
 from dotenv import load_dotenv
 
 load_dotenv()
@@ -7,7 +6,7 @@ load_dotenv()
 def env_bool(name: str, default: str = "false") -> bool:
     return os.getenv(name, default).strip().lower() in {"1", "true", "yes", "y", "on"}
 
-class Config:
+class Configs:
     NEWSAPI_KEY = os.getenv("NEWSAPI_KEY")
     MARKETAUX_KEY = os.getenv("MARKETAUX_KEY")
     FINNHUB_KEY = os.getenv("FINNHUB_KEY")

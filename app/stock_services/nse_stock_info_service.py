@@ -4,9 +4,7 @@ from typing import Dict, Any, Optional
 import httpx
 from tenacity import retry, stop_after_attempt, wait_exponential
 
-# -----------------------------
-# Config / Constants (similar to your structure)
-# -----------------------------
+
 class NSEConfig:
     BASE_URL = "https://www.nseindia.com"
     API_URL = f"{BASE_URL}/api"
@@ -16,9 +14,6 @@ class NSEConstants:
     MAX_RETRIES = 5
 
 
-# -----------------------------
-# Logging
-# -----------------------------
 logging.basicConfig(
     level=logging.INFO,
     format="%(asctime)s - %(levelname)s - %(name)s - %(message)s"
@@ -26,9 +21,6 @@ logging.basicConfig(
 logger = logging.getLogger("NSEService")
 
 
-# -----------------------------
-# Async HTTP Client (Aligned)
-# -----------------------------
 class AsyncHttpClient:
 
     _client: Optional[httpx.AsyncClient] = None
@@ -49,7 +41,6 @@ class AsyncHttpClient:
                 follow_redirects=True,
             )
 
-            # Prime cookies (VERY IMPORTANT for NSE)
             try:
                 await cls._client.get(NSEConfig.BASE_URL)
                 logger.info("NSE session initialized")
@@ -73,7 +64,6 @@ class AsyncHttpClient:
 
             response = await client.get(url, params=params)
 
-            # Retry-worthy conditions
             if response.status_code in (401, 403, 429):
                 logger.warning(f"NSE blocked / rate limited: {url}")
                 raise Exception("Retryable NSE block")
@@ -95,36 +85,27 @@ class AsyncHttpClient:
             raise
 
 
-# -----------------------------
-# NSE Service Layer
-# -----------------------------
-class NSEService:
+class NseService:
 
-    # -----------------------------
-    # Market APIs
-    # -----------------------------
-    async def getMarketStatus(self) -> Dict:
+    async def get_market_status_from_nse(self) -> Dict:
         return await AsyncHttpClient.get("/marketStatus")
 
-    async def getAllIndices(self) -> Dict:
+    async def get_all_indices_from_nse(self) -> Dict:
         return await AsyncHttpClient.get("/allIndices")
 
-    async def getEquityStockIndices(self, index: str = "NIFTY 50") -> Dict:
+    async def get_equity_stock_indices_from_nse(self, index: str = "NIFTY 50") -> Dict:
         return await AsyncHttpClient.get(
             "/equity-stockIndices",
             {"index": index}
         )
 
-    # -----------------------------
-    # Equity APIs
-    # -----------------------------
-    async def getQuoteEquity(self, symbol: str = "RELIANCE") -> Dict:
+    async def get_quote_equity_from_nse(self, symbol: str = "RELIANCE") -> Dict:
         return await AsyncHttpClient.get(
             "/quote-equity",
             {"symbol": symbol}
         )
 
-    async def getQuoteTradeInfo(self, symbol: str = "TCS") -> Dict:
+    async def get_quote_trade_info_from_nse(self, symbol: str = "TCS") -> Dict:
         return await AsyncHttpClient.get(
             "/quote-equity",
             {
@@ -133,25 +114,19 @@ class NSEService:
             }
         )
 
-    # -----------------------------
-    # Market Movers
-    # -----------------------------
-    async def getTopGainers(self) -> Dict:
+    async def get_top_gainers_from_nse(self) -> Dict:
         return await AsyncHttpClient.get(
             "/live-analysis-variations",
             {"index": "gainers"}
         )
 
-    async def getTopLosers(self) -> Dict:
+    async def get_top_losers_from_nse(self) -> Dict:
         return await AsyncHttpClient.get(
             "/live-analysis-variations",
             {"index": "losers"}
         )
 
-    # -----------------------------
-    # Aggregated Fetch (like your style)
-    # -----------------------------
-    async def getMarketSnapshot(self) -> Dict[str, Any]:
+    async def get_market_snapshot_from_nse(self) -> Dict[str, Any]:
         import asyncio
 
         try:

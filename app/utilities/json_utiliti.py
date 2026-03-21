@@ -3,6 +3,8 @@ from pathlib import Path
 import json
 from typing import Optional, List, Any
 
+from pydantic import FilePath
+
 
 def _to_dict(item: Any) -> dict:
     if hasattr(item, "model_dump"):
@@ -25,7 +27,7 @@ def _build_path(
     filename: str
 ) -> Path:
     root = Path(base_path) if base_path else Path.cwd()
-    folder = folder_name or "newsdump"
+    folder = folder_name or "json_outputs"
 
     dir_path = root / folder
     dir_path.mkdir(parents=True, exist_ok=True)
@@ -36,15 +38,15 @@ def _build_path(
 
     return dir_path / stamped_name
 
-def save_news(
-    news_list: List[Any],
-    base_path: Optional[str] = None,
+def save_json(
+    json_list: List[Any],        
+    filename: str = "payload.json",
     folder_name: Optional[str] = None,
-    filename: str = "news.json"
-) -> Path:
+    base_path: Optional[str] = None
+    ) -> Path:
 
     file_path = _build_path(base_path, folder_name, filename)
-    records = _add_index(news_list)
+    records = _add_index(json_list)
 
     with open(file_path, "w", encoding="utf-8") as f:
         json.dump(
@@ -56,3 +58,15 @@ def save_news(
         )
 
     return file_path
+
+def save_json_without_index(
+    data: Any,     
+    filename: str = "payload.json",
+    folder_name: Optional[str] = None,
+    base_path: Optional[str] = None    
+    ) -> None:
+
+    file_path = _build_path(base_path, folder_name, filename)
+
+    with open(file_path, "w", encoding="utf-8") as f:
+        json.dump(data, f, indent=4, ensure_ascii=False)    
