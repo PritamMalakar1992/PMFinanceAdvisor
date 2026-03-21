@@ -2,7 +2,7 @@ from datetime import datetime
 from pathlib import Path
 import json
 from typing import Optional, List, Any
-
+import pandas as pd
 from pydantic import FilePath
 
 
@@ -70,3 +70,40 @@ def save_json_without_index(
 
     with open(file_path, "w", encoding="utf-8") as f:
         json.dump(data, f, indent=4, ensure_ascii=False)    
+
+def save_dataframe_as_json(
+    df: pd.DataFrame,
+    filename: str = "payload.json",
+    folder_name: Optional[str] = "json_outputs",
+    base_path: Optional[str] = None,
+    orient: str = "records",
+    clean: bool = True
+) -> None:
+
+    if df is None or df.empty:
+        raise ValueError("DataFrame is empty or None")
+
+    file_path = _build_path(base_path, folder_name, filename)
+
+    if clean:
+        df = df.copy()
+
+        for col in df.columns:
+            df[col] = (
+                df[col]
+                .astype(str)
+                .str.replace(",", "", regex=False)
+                .str.replace("%", "", regex=False)
+                .str.strip()
+            )
+
+            #df[col] = pd.to_numeric(df[col], errors="ignore")
+            converted = pd.to_numeric(df[col], errors="coerce")
+            df[col] = converted.where(converted.notna(), df[col])
+
+    json_data = df.to_dict(orient=orient)
+
+    with open(file_path, "w", encoding="utf-8") as f:
+        json.dump(json_data, f, indent=4, ensure_ascii=False)
+
+    print(f"JSON saved at: {file_path}")        

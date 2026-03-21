@@ -1,287 +1,245 @@
-# 🚀 AI-Powered News-Driven Stock Recommendation Engine
+🚀 Autonomous AI Investment Advisor
+News-Aware, Strategy-Driven, Multi-Iteration Stock Selection Engine
+📌 Overview
 
----
+This project is a fully autonomous AI-driven investment advisory system designed to generate high-confidence stock recommendations for the Indian equity market (NSE/BSE) — with future support for global markets.
 
-## 📌 Overview
+Unlike traditional screeners or static models, this system combines:
 
-This project is an **AI-driven stock recommendation system** that analyzes **global and Indian news signals** to intelligently suggest investment opportunities.
+📊 Fundamental screening (configurable by client)
+📰 Real-time global + Indian news intelligence
+🌐 Web-scale information discovery
+🧠 LLM-powered reasoning & strategy simulation
+🔁 Multi-iteration consensus-based stock selection
+💼 Dynamic portfolio allocation & rebalancing
+📈 Continuous performance tracking via virtual trading
+🧠 Core Philosophy
 
-It combines:
+“Not just data-driven. Context-aware. Strategy-aligned. Continuously learning.”
 
-* 🌍 World News Intelligence
-* 🇮🇳 India-Specific Market Signals
-* 💰 Financial & Economic News
-* 📊 Historical Strategies of Top Investors
-* 🤖 Autonomous Decision Making
+This system mimics how elite investors think:
 
-👉 The system continuously learns, analyzes, simulates trades, and improves its recommendations **daily**.
+Filter → Analyze → Validate → Allocate → Track → Adapt
+🎯 Objectives
+Identify high-quality stocks using fundamental filters
+Incorporate macro + micro news signals
+Apply proven investor strategies
+Reduce randomness via multi-iteration consensus
+Simulate real-world performance
+Enable future transition to real capital deployment
+⚙️ High-Level Architecture
+What is this?
+🔍 Step 1: Stock Universe & Fundamental Screening
+📥 Data Source
+NSE / BSE listed stocks
+Currently extracted via scraping: Screener.in
+(Temporary solution due to lack of free structured APIs)
+⚙️ Client-Configurable Filters
 
----
+Users define their own investment criteria:
 
-## 🧠 Core Idea
+filters:
+  promoter_holding: "> 51"
+  debtor_days: "< 90"
+  sales_growth_5y: "> 10"
+  profit_growth_5y: "> 12"
+🎯 Output
+Filtered universe → ~50 high-quality stocks
+📰 Step 2: News & Information Intelligence Layer
+🌐 Sources
+APIs Used:
+NEWSAPI
+MARKETAUX
+FINNHUB
+NEWSDATA
+WORLDNEWSAPI
+Categories:
+🌍 Global Headlines
+💰 Financial & Economic News
+🇮🇳 India-specific News
+📊 Business & Market News
+🔎 Web Discovery
+Firecrawl-based web search
+Extracts:
+Hidden or niche news
+Company-specific developments
+Sector-level disruptions
+🧠 Signal Extraction
 
-> “Markets react to information. This system reacts faster, smarter, and consistently.”
+LLM filters raw data to:
 
-The engine:
+Remove noise ❌
+Extract impactful events ✅
+Identify:
+Market-moving signals
+Sentiment shifts
+Risk triggers
+Opportunity catalysts
+🧠 Step 3: Strategy-Driven LLM Decision Engine
+🎓 Embedded Investment Strategies
 
-1. Extracts **high-impact news**
-2. Maps news → **market sentiment**
-3. Aligns with **historical trading philosophies**
-4. Selects **high-potential stocks**
-5. Simulates **real-world portfolio performance**
+System leverages philosophies inspired by:
 
----
+Warren Buffett → Value Investing
+Peter Lynch → Growth at Reasonable Price
+Ray Dalio → Macro-driven allocation
+George Soros → Reflexivity & momentum
+⚙️ Model Configurability
+Supports multiple frontier models (via flag)
+Strategy selection:
+Single strategy
+Hybrid strategies
+Weighted strategy blending
+🔁 Step 4: Multi-Iteration Stock Selection
 
-## ⚙️ System Architecture
+Instead of a single pass:
 
-```mermaid
-flowchart TD
-    A[News Sources] --> B[Data Ingestion Layer]
-    B --> C[News Normalization]
-    C --> D[LLM Intelligence Engine]
-    D --> E[Stock Selection Engine]
-    E --> F[Fundamental Analysis]
-    F --> G[Portfolio Optimizer]
-    G --> H[Virtual Trading Engine]
-    H --> I[Performance Tracker]
-    I --> D
-```
-
----
-
-## 🌐 Data Sources
-
-### Global Signals
-
-* World News Headlines
-* Global Financial News
-
-### India Signals
-
-* Indian News Headlines
-* Indian Financial News
-
----
-
-## 🔁 Iterative Intelligence Loop
-
-The system runs in **multiple iterations** per cycle:
-
-```mermaid
-graph LR
-    A[Iteration 1] --> B[5 Stocks]
-    B --> C[Iteration 2]
-    C --> D[5 Stocks]
-    D --> E[Iteration 3]
-    E --> F[5 Stocks]
-    F --> G[Total 15 Stocks]
-```
-
-### 🔍 What happens in each iteration:
-
-* News → Insight extraction
-* Market sentiment mapping
-* Index-based or autonomous stock discovery
-* Strategy alignment
-
----
-
-## 🧾 Stock Selection Process
-
-### Step 1: Candidate Generation
-
-* 5 stocks per iteration
-* Total ~15 stocks
-
-### Step 2: Deep Analysis
-
-* Fundamental strength
-* News sentiment strength
-* Market positioning
-
-### Step 3: Final Selection
-
-* Top **5 stocks** chosen
-
----
-
-## 📊 Portfolio Optimization
-
-The system suggests:
-
-* ✅ Best 5 stocks
-* 💰 Investment allocation ratio
-* 📈 Optimized for given capital (e.g., ₹10,000)
-
-### Example Output
-
-```json
+🔄 Process
+Run stock selection N times (configurable)
+Each iteration:
+Re-analyzes same dataset
+Applies reasoning independently
+🧮 Consensus Mechanism
+Stocks selected across iterations are counted
+Final selection based on:
+Frequency of selection
+Confidence score
+🎯 Output
 {
-  "portfolio": [
-    {"stock": "A", "allocation": "25%"},
-    {"stock": "B", "allocation": "20%"},
-    {"stock": "C", "allocation": "20%"},
-    {"stock": "D", "allocation": "15%"},
-    {"stock": "E", "allocation": "20%"}
+  "final_stocks": ["StockA", "StockB", "StockC", "StockD", "StockE"]
+}
+💼 Step 5: Portfolio Allocation Engine
+
+Once stocks are selected:
+
+💰 Input
+Total capital (e.g., ₹10,000)
+🧠 Allocation Logic
+
+LLM determines:
+
+Risk distribution
+Conviction level
+Diversification
+📊 Example
+{
+  "investment": 10000,
+  "allocation": [
+    {"stock": "A", "amount": 2500},
+    {"stock": "B", "amount": 2000},
+    {"stock": "C", "amount": 2000},
+    {"stock": "D", "amount": 1500},
+    {"stock": "E", "amount": 2000}
   ]
 }
-```
+📉 Step 6: Virtual Trading Engine
+📥 Execution
+Simulates buy at current market price
+Stores:
+Stock
+Price
+Quantity
+Timestamp
+🗃 Storage
+Database / File system
+Separate logs for:
+Daily trades
+Portfolio states
+📈 Step 7: Performance Tracking
+📊 Daily Evaluation
+Compare:
+Yesterday’s buy price
+Today’s market price
+🧮 Formula
+Return = (Current Price - Buy Price) × Quantity
+📅 Metrics
+Daily return
+Cumulative return
+Portfolio growth
+Strategy performance
+🔄 Step 8: Rebalancing Engine
+📥 Inputs
+Current portfolio
+Latest news signals
+Updated analysis
+⚖️ Decision Logic
+What is this?
+🔁 Actions
+Add new stocks
+Remove weak performers
+Adjust allocation weights
+🔁 Continuous Learning Loop
+Diagram is not supported.
+What is this?
+⚡ Key Features
+✅ Client-configurable screening filters
+🌍 Multi-source news intelligence
+🔎 Web-scale discovery (Firecrawl)
+🧠 Strategy-driven LLM reasoning
+🔁 Multi-iteration consensus selection
+💼 Intelligent portfolio allocation
+📉 Virtual trading simulation
+📊 Performance tracking
+🔄 Daily rebalancing
+🛠️ Tech Stack
+Backend: Python (Async architecture)
+Data Modeling: Pydantic
+Concurrency: AsyncIO
+LLM Integration: Multi-model support
+Scraping: Screener.in + Firecrawl
+APIs: News providers
+Storage: DB / File-based logs
+⚠️ Current Limitations
+❌ No official fundamental API (scraping dependency)
+❌ No real-time trading
+❌ No intraday / derivatives support
+❌ Latency in news ingestion vs HFT systems
+🚀 Future Roadmap
+🌍 Market Expansion
+US (NASDAQ, NYSE)
+EU, Asia markets
+📊 Advanced Analytics
+Technical indicators (RSI, MACD)
+Risk-adjusted metrics (Sharpe Ratio)
+Factor investing models
+🧠 AI Enhancements
+Reinforcement learning loop
+Self-improving strategy selection
+Memory-based decision refinement
+💰 Production Deployment
+Broker API integration
+Live trading execution
+Risk management layer
+📌 Example End-to-End Flow
+What is this?
+🧾 Summary
 
----
+This system is not just a stock picker — it is a:
 
-## 📉 Virtual Trading Engine
+🧠 Reasoning engine
+🌍 Market-aware intelligence system
+🔁 Self-evolving investment loop
 
-Every day, the system:
+It:
 
-* 📥 Executes virtual trades
-* 📊 Tracks market prices
-* 💹 Calculates returns
+Filters intelligently
+Thinks strategically
+Acts consistently
+Learns continuously
+⚠️ Disclaimer
 
----
+This system is for research and simulation purposes only.
+It does not constitute financial advice.
+Real trading involves risk.
 
-## 🔄 Daily Rebalancing Logic
-
-```mermaid
-flowchart TD
-    A[Previous Portfolio] --> B[Market Update]
-    B --> C[Re-evaluation Engine]
-    C --> D{Rebalance Needed?}
-    D -->|Yes| E[Adjust Allocation]
-    D -->|No| F[Hold Positions]
-    E --> G[Updated Portfolio]
-    F --> G
-```
-
-### Actions:
-
-* Rebalance allocation
-* Add/remove stocks
-* Increase/decrease exposure
-
----
-
-## 📈 Performance Tracking
-
-The system evaluates:
-
-* 📊 Daily return
-* 📆 Cumulative return
-* 📉 Drawdown
-* 📈 Portfolio growth
-
-```mermaid
-line
-    title Portfolio Growth Simulation
-    x-axis Day
-    y-axis Value
-    "Portfolio Value" : 10000, 10200, 10150, 10500, 11000, 11500
-```
-
----
-
-## 🧮 Return Calculation Logic
-
-* Based on:
-
-  * Suggested buy price
-  * Current market price
-  * Allocation ratio
-
-```text
-Return = (Current Price - Buy Price) * Quantity
-```
-
----
-
-## 🧠 Intelligence Layer
-
-The system mimics strategies inspired by:
-
-* Long-term value investing
-* Momentum trading
-* News-driven volatility
-* Macro-economic trends
-
----
-
-## ⚡ Features
-
-* ✅ Fully automated pipeline
-* 🌍 Multi-region intelligence (World + India)
-* 🔁 Iterative refinement
-* 📊 Portfolio optimization
-* 💡 Strategy-driven decisions
-* 📈 Continuous learning loop
-* 🔄 Daily rebalancing
-* 🧪 Virtual trading simulation
-
----
-
-## 🛠️ Tech Stack
-
-* Python (Async Processing)
-* Pydantic (Data Models)
-* AsyncIO (Concurrency)
-* LLM Integration (Decision Engine)
-* REST APIs (News Sources)
-
----
-
-## 🚀 Future Enhancements
-
-* 🔮 Real-time trading integration
-* 📊 Advanced technical indicators
-* 🧠 Reinforcement learning loop
-* 📉 Risk-adjusted portfolio optimization
-* 🌐 Multi-market expansion (US, EU, Asia)
-
----
-
-## 📌 Example Workflow
-
-```mermaid
-sequenceDiagram
-    participant N as News APIs
-    participant A as AI Engine
-    participant S as Stock Selector
-    participant P as Portfolio Engine
-    participant T as Trading Simulator
-
-    N->>A: Fetch News
-    A->>S: Extract Insights
-    S->>P: Select Stocks
-    P->>T: Allocate Capital
-    T->>A: Feedback Loop
-```
-
----
-
-## 🧾 Summary
-
-This project is a **self-improving financial intelligence system** that:
-
-* Reads the world 🌍
-* Understands markets 📊
-* Learns from history 🧠
-* Simulates decisions 🔁
-* Optimizes portfolios 💰
-
-👉 All with the goal of making **smarter, data-driven stock recommendations every single day.**
-
----
-
-## ⭐ Contribution
+⭐ Contribution
 
 Contributions, ideas, and improvements are welcome!
 
----
-
-## 📜 License
+📜 License
 
 MIT License
 
----
+💡 Final Thought
 
-## 💡 Final Thought
-
-> “In the market, information is power — this system turns information into action.”
+“Alpha comes not from more data, but from better interpretation of data.”

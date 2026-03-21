@@ -2,10 +2,9 @@ from app.news_services.news_injest_services import NewsAPIService, MarketauxServ
 from app.stock_services.nse_stock_info_service import NseService
 from app.stock_services.yahoo_stock_info_service import StockService
 from app.stock_services.nse_stock_info_service import NseService
-from app.utilities.json_utiliti import save_json, save_json_without_index
+from app.utilities.json_utiliti import save_json, save_json_without_index, save_dataframe_as_json
 from app.utilities.firecrawl_utiliti import FirecrawlService
 from app.utilities.screener_scraper import scrape
-from app.utilities.screener_scraper_without_selenium import scrape_without_selenium
 from .configs_constants.configs import Configs
 import asyncio
 import sys
@@ -48,8 +47,8 @@ async def main():
         save_json(combined)
         print(f"Saved {len(combined)} articles.")
 
-
     screener_data_dataframe=scrape()
+    save_dataframe_as_json(screener_data_dataframe)
     print(screener_data_dataframe)
 
     #print(await stockService.index_info_from_yahoo());

@@ -15,10 +15,6 @@ from webdriver_manager.chrome import ChromeDriverManager
 from ..configs_constants.configs import Configs
 from ..configs_constants import constants as C
 
-
-LOGIN_URL = "https://www.screener.in/login/"
-RAW_URL = "https://www.screener.in/screen/raw/?sort=&order=&source_id=&query=Promoter+holding++%3E+51+AND%0D%0ADebtor+days++%3C+90+AND%0D%0ASales+growth+5Years+%3E+50+AND%0D%0AProfit+growth+5Years+%3E+50"
-
 WAIT_TIME = 20
 MAX_RETRIES = 3
 
@@ -44,7 +40,7 @@ def setup_driver(headless=False):
 
 def login(driver, email, password):
     logging.info("Logging in...")
-    driver.get(LOGIN_URL)
+    driver.get(C.SCREENER_LOGIN_URL)
 
     wait = WebDriverWait(driver, WAIT_TIME)
 
@@ -59,7 +55,7 @@ def login(driver, email, password):
 
 def open_raw(driver):
     logging.info("Opening RAW page...")
-    driver.get(RAW_URL)
+    driver.get(C.SCREENER_RAW_URL)
 
     WebDriverWait(driver, WAIT_TIME).until(
         EC.presence_of_element_located((By.CSS_SELECTOR, "table.data-table"))
