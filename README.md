@@ -47,7 +47,7 @@ The system mimics how experienced investors operate:
 flowchart TD
     A[Client Configurable Filters] --> B[Stock Universe Extraction]
     B --> C[Fundamental Screening Engine]
-    C --> D[Candidate Stocks (~50)]
+    C --> D[Candidate Stocks ~50]
 
     E[News APIs + Web Crawling] --> F[News Aggregation Layer]
     F --> G[Signal Extraction Engine]
@@ -70,9 +70,6 @@ flowchart TD
 
     P --> H
 ```
-
-
-
 ---
 
 ## 🔍 Step 1: Stock Universe & Fundamental Screening
@@ -242,7 +239,7 @@ The system determines:
 ### 📥 Execution
 
 - Simulates buying at current market price
-- Records:  
+- Records:
   - Stock
   - Price
   - Quantity
