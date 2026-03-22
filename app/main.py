@@ -1,7 +1,7 @@
 from app.news_services.news_injest_services import NewsAPIService, MarketauxService, FinnhubService, NewsDataService, WorldNewsAPIService
 from app.stock_services.nse_stock_info_service import NseService
 from app.stock_services.yahoo_stock_info_service import StockService
-from app.stock_services.nse_stock_info_service import NseService
+from app.stock_services.indian_stock_info_service import IndianStockService
 from app.utilities.json_utiliti import save_json, save_json_without_index, save_dataframe_as_json
 from app.utilities.firecrawl_utiliti import FirecrawlService
 from app.utilities.screener_scraper import scrape
@@ -21,6 +21,7 @@ async def main():
     firecrawlservice = FirecrawlService()
     stockService = StockService()
     nse_service = NseService()
+    indian_stock_service = IndianStockService()
 
     API_TASKS = {
         "USE_NEWSAPI": newsapi.start_injest_from_newsapi,
@@ -47,9 +48,10 @@ async def main():
         save_json(combined)
         print(f"Saved {len(combined)} articles.")
 
-    screener_data_dataframe=scrape()
-    save_dataframe_as_json(screener_data_dataframe)
-    print(screener_data_dataframe)
+    #screener_data_dataframe=scrape()
+    #save_dataframe_as_json(screener_data_dataframe)
+
+    print(await indian_stock_service.get_stock_by_name("BALKRISIND"))
 
     #print(await stockService.index_info_from_yahoo());
     #print(await stockService.stock_details_from_yahoo());

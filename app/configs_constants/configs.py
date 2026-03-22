@@ -13,6 +13,7 @@ class Configs:
     NEWSDATA_KEY = os.getenv("NEWSDATA_KEY")
     WORLDNEWSAPI_KEY = os.getenv("WORLDNEWSAPI_KEY")
     FIRECRAWL_API_KEY = os.getenv("FIRECRAWL_API_KEY")
+    INDIAN_STOCK_API_KEY = os.getenv("INDIAN_STOCK_API_KEY") 
     
     # Configurable News Provider
     USE_NEWSAPI = env_bool("USE_NEWSAPI")
