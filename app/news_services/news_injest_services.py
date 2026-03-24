@@ -108,15 +108,23 @@ def format_news(source: str, category: str, articles: List[Dict]) -> List[News]:
         else:
             parsed_date = datetime.now(timezone.utc).date()
 
+        # Pritam - Commented to lower LLM cost
         news_text = (
-            f"Title - {title}, "
+            #f"Title - {title}, "            
+            #f"Headline - {headline}, "
+            f"{description}"
+        )
+
+        """
+        news_text = (
+            f"Title - {title}, "            
             f"Headline - {headline}, "
             f"Description - {description}"
         )
-
+        """
         formatted.append(
             News(
-                news= news_text,
+                news=news_text,
                 date=parsed_date,
                 source=source,
                 category=category
@@ -168,11 +176,12 @@ class NewsDataService:
 
     async def start_injest_from_newsdata(self) -> Dict[str, List]:
         results=await asyncio.gather(
-            self._newsDataAPIWorldHeadline(),
+            # Pritam - Commented to lower LLM cost
+            #self._newsDataAPIWorldHeadline(),
             self._newsDataAPIWorldFinance(),
-            self._newsDataAPIIndiaBusiness(),
-            self._newsDataAPIIndiaHeadline(),
-            self._newsDataAPIIndiaBusiness(),
+            #self._newsDataAPIIndiaBusiness(),
+            #self._newsDataAPIIndiaHeadline(),
+            #self._newsDataAPIIndiaBusiness(),
             self._newsDataAPIIndiaFinance()
         )
         
@@ -213,11 +222,12 @@ class NewsAPIService:
 
     async def start_injest_from_newsapi(self) -> Dict[str, List]:
         results=await asyncio.gather(
-            self._newsAPIWorldHeadline(),
-            self._newsAPIWorldBusiness(),
+            # Pritam - Commented to lower LLM cost
+            #self._newsAPIWorldHeadline(),
+            #self._newsAPIWorldBusiness(),
             self._newsAPIWorldFinance(),
-            self._newsAPIIndiaHeadline(),
-            self._newsAPIIndiaBusiness(),
+            #self._newsAPIIndiaHeadline(),
+            #self._newsAPIIndiaBusiness(),
             self._newsAPIIndiaFinance()
         )
         
@@ -262,11 +272,12 @@ class MarketauxService:
 
     async def start_injest_from_marketauxapi(self) -> Dict[str, List]:
         results=await asyncio.gather(
-            self._marketauxAPIWorldHeadline(),
+            # Pritam - Commented to lower LLM cost
+            #self._marketauxAPIWorldHeadline(),
             self._marketauxAPIWorldFinance(),
-            self._marketauxAPIWorldBusiness(),
-            self._marketauxAPIIndiaHeadline(),
-            self._marketauxAPIIndiaBusiness(),
+            #self._marketauxAPIWorldBusiness(),
+            #self._marketauxAPIIndiaHeadline(),
+            #self._marketauxAPIIndiaBusiness(),
             self._marketauxAPIIndiaFinance()
         )
         
@@ -308,11 +319,12 @@ class FinnhubService:
 
     async def start_injest_from_finnhubapi(self) -> Dict[str, List]:
         results=await asyncio.gather(
-            self._finnhubAPIWorldHeadline(),
+            # Pritam - Commented to lower LLM cost
+            #self._finnhubAPIWorldHeadline(),
             self._finnhubAPIWorldFinance(),
-            self._finnhubAPIWorldBusiness(),
-            self._finnhubAPIIndiaHeadline(),
-            self._finnhubAPIIndiaBusiness(),
+            #self._finnhubAPIWorldBusiness(),
+            #self._finnhubAPIIndiaHeadline(),
+            #self._finnhubAPIIndiaBusiness(),
             self._finnhubAPIIndiaFinance()
         )
         
@@ -403,9 +415,10 @@ class WorldNewsAPIService:
 
     async def start_injest_from_worldnewsapi(self) -> Dict[str, List]:
         results=await asyncio.gather(
-            self._worldNewsAPIWorldHeadline(),
+            # Pritam - Commented to lower LLM cost
+            #self._worldNewsAPIWorldHeadline(),
             self._worldNewsAPIWorldBusFin(),            
-            self._worldNewsAPIIndiaHeadline(),
+            #self._worldNewsAPIIndiaHeadline(),
             self._worldNewsAPIIndiaBusFin()
         )
         

@@ -1,3 +1,4 @@
+from app.agents.summarizer_agent.summarizer import Summarize
 from app.news_services.news_injest_services import NewsAPIService, MarketauxService, FinnhubService, NewsDataService, WorldNewsAPIService
 from app.stock_services.nse_stock_info_service import NseService
 from app.stock_services.yahoo_stock_info_service import StockService
@@ -39,19 +40,32 @@ async def main():
 
     results = await asyncio.gather(*tasks, return_exceptions=True)
     combined = [item for sublist in results for item in sublist]
-
-    #for news in combined[:10]:
-    #for news in combined:
-        #print(news)
     
     if combined:
         save_json(combined)
         print(f"Saved {len(combined)} articles.")
+    
+    news_list = "\n".join(
+    f"Index - {index}: {news_item.news}"
+    for index, news_item in enumerate(combined))
+
+    runs: int = 3
+    tasks = [Summarize(news_list) for _ in range(runs)]
+
+    results = await asyncio.gather(*tasks)
+    combined_news = []
+    for result in results:
+        combined_news.extend(result.output.relevant_news)
+
+    return combined_news
+
+    #print(summarize_news.final_output)
+    save_json(combined_news.final_output, "summarized_news")
 
     #screener_data_dataframe=scrape()
     #save_dataframe_as_json(screener_data_dataframe)
 
-    print(await indian_stock_service.get_stock_by_name("BALKRISIND"))
+    #print(await indian_stock_service.get_stock_by_name("BALKRISIND"))
 
     #print(await stockService.index_info_from_yahoo());
     #print(await stockService.stock_details_from_yahoo());
@@ -77,6 +91,10 @@ async def main():
 
     #market_status_data=await nse_service.get_quote_equity_from_nse()
     #save_json_without_index(market_status_data,'market_status_data')
+
+    """
+    serper.dev can be used to extract more news 
+    """
 
 if __name__ == "__main__":
     asyncio.run(main())
