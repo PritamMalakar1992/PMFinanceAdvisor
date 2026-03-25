@@ -78,7 +78,7 @@ def save_dataframe_as_json(
     base_path: Optional[str] = None,
     orient: str = "records",
     clean: bool = True
-) -> None:
+    ) -> None:
 
     if df is None or df.empty:
         raise ValueError("DataFrame is empty or None")
@@ -107,3 +107,40 @@ def save_dataframe_as_json(
         json.dump(json_data, f, indent=4, ensure_ascii=False)
 
     print(f"JSON saved at: {file_path}")        
+
+def save_llm_news_json(
+    data: Any,
+    filename: str = "news_output.json",
+    folder_name: Optional[str] = None,
+    base_path: Optional[str] = None
+) -> Path:
+
+    file_path = _build_path(base_path, folder_name, filename)
+
+    # Case 1: Full Pydantic response (NewsAnalysisOutput)
+    if hasattr(data, "model_dump"):
+        payload = data.model_dump(mode="json", exclude_none=True)
+
+    # Case 2: List of RelevantNewsItem
+    elif isinstance(data, list):
+        payload = {
+            "relevant_news": [
+                item.model_dump(mode="json", exclude_none=True)
+                if hasattr(item, "model_dump")
+                else item
+                for item in data
+            ]
+        }
+
+    else:
+        raise ValueError("Unsupported data type for LLM news saving")
+
+    with open(file_path, "w", encoding="utf-8") as f:
+        json.dump(
+            payload,
+            f,
+            indent=2,
+            ensure_ascii=False,
+        )
+
+    return file_path    

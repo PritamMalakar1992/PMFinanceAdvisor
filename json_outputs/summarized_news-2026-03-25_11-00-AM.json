@@ -1,0 +1,92 @@
+{
+  "relevant_news": [
+    {
+      "index": 62,
+      "headline": "Iran war may halve India's LPG imports in March",
+      "summary": "The ongoing Iran war is projected to reduce LPG imports to India significantly this March, posing potential supply challenges for the Indian energy sector. This disruption could impact major players in the domestic LPG market.",
+      "impact_type": "negative",
+      "affected_entities": [
+        "India LPG market",
+        "Oil and Gas sector"
+      ],
+      "reason_for_selection": "Impaired LPG imports can severely affect India's energy supply dynamics, making this news crucial for affected sectors."
+    },
+    {
+      "index": 75,
+      "headline": "India's Reliance buys 5 million barrels of Iranian oil after US waiver",
+      "summary": "Reliance Industries has secured a deal to purchase 5 million barrels of Iranian oil under a US waiver, which could stabilize its oil supply amid fluctuating geopolitical tensions. This action reflects Reliance's strategic positioning in response to the Iran conflict.",
+      "impact_type": "positive",
+      "affected_entities": [
+        "Reliance Industries",
+        "Oil and Gas sector"
+      ],
+      "reason_for_selection": "This purchase enhances Reliance’s supply chain and could affect oil prices and stock performance in the sector."
+    },
+    {
+      "index": 138,
+      "headline": "Indian shares join global rally after Trump delays Iran grid bombing",
+      "summary": "Indian equities have rallied alongside global markets following President Trump's announcement to postpone military actions involving Iran, boosting investor sentiment in India. This could lead to recovery in stocks across various sectors.",
+      "impact_type": "positive",
+      "affected_entities": [
+        "Indian equities",
+        "Various sectors"
+      ],
+      "reason_for_selection": "Positive global market sentiment could drive investor confidence and improve stock valuations across India."
+    },
+    {
+      "index": 123,
+      "headline": "Indian shares fall, rupee drops to record low as Iran war rattles markets",
+      "summary": "The ongoing conflict in Iran has led to significant declines in Indian shares and a record low for the rupee, signaling heightened market volatility. This situation may affect investor sentiment and capital flows.",
+      "impact_type": "negative",
+      "affected_entities": [
+        "Indian equity market",
+        "Indian rupee"
+      ],
+      "reason_for_selection": "Market declines linked to geopolitical tensions have direct ramifications for investor behavior and stock prices."
+    },
+    {
+      "index": 137,
+      "headline": "India's Reliance buys 5 million barrels of Iranian oil after US waiver",
+      "summary": "Reliance has purchased 5 million barrels of Iranian oil following a waiver from the US. This move is expected to impact India's energy sector significantly and support Reliance Industries' fuel supply.",
+      "impact_type": "positive",
+      "affected_entities": [
+        "Reliance Industries",
+        "Indian oil sector"
+      ],
+      "reason_for_selection": "This impacts Reliance's supply chain and revenue, positioning it favorably in the Indian energy market."
+    },
+    {
+      "index": 135,
+      "headline": "Iran war may halve India's LPG imports in March, according to traders",
+      "summary": "Due to the ongoing Iran conflict, India's LPG imports could be halved, threatening supply for consumers and impacting energy companies in India.",
+      "impact_type": "negative",
+      "affected_entities": [
+        "Indian LPG sector",
+        "energy companies"
+      ],
+      "reason_for_selection": "This disruption in LPG imports could adversely affect energy companies and consumer prices in India."
+    },
+    {
+      "index": 92,
+      "headline": "Indian shares join global rally after Trump delays Iran grid bombing",
+      "summary": "Indian shares rebounded as global markets reacted positively to Trump's decision to delay military action against Iran, improving investor sentiment.",
+      "impact_type": "positive",
+      "affected_entities": [
+        "Indian equities",
+        "General market"
+      ],
+      "reason_for_selection": "This news indicates a broader positive market trend which could uplift various sectors in India."
+    },
+    {
+      "index": 120,
+      "headline": "Diesel prices have surged about 40% to $5.29 per gallon due to Iran war disruptions",
+      "summary": "The Iran war has caused diesel prices in the U.S. to surge, which could further increase fuel costs in India and impact transportation sectors.",
+      "impact_type": "negative",
+      "affected_entities": [
+        "Indian transportation sector",
+        "logistics companies"
+      ],
+      "reason_for_selection": "Higher fuel costs may squeeze margins for Indian transportation and logistics companies, influencing stock performance."
+    }
+  ]
+}

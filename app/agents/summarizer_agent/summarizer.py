@@ -1,5 +1,8 @@
+import asyncio
+from collections import OrderedDict
+from typing import Any
 from agents import Agent, Runner, trace
-from app.models.relevant_news import NewsAnalysisOutput
+from app.models.relevant_news import NewsAnalysisOutput, RelevantNewsItem
 
 
 financial_news_analyst = """
@@ -150,7 +153,23 @@ summarizer_agent = Agent(
     model="gpt-4o-mini",
     output_type=NewsAnalysisOutput)
 
-async def Summarize(message: str):
-    with trace("Automated SDR"):
+async def summarize(message: str):
+    with trace("Automated Summarizer"):
         result = await Runner.run(summarizer_agent, message)
-        return result
+        return result.final_output  # return only structured output
+
+async def summarize_with_iterations(news_list: str, runs: int = 2):
+    tasks = [summarize(news_list) for _ in range(runs)]
+    results = await asyncio.gather(*tasks)
+
+    combined_dict = OrderedDict[Any, RelevantNewsItem]()
+
+    for run_output in results:
+        for item in run_output.relevant_news:
+            idx = item.index
+
+            if idx not in combined_dict:
+                combined_dict[idx] = item
+
+    combined_news = list[RelevantNewsItem](combined_dict.values())
+    return combined_news        
