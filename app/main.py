@@ -49,18 +49,18 @@ async def main():
     f"Index - {index}: {news_item.news}"
     for index, news_item in enumerate(combined))
 
-    runs: int = 3
+    runs: int = 2
     tasks = [Summarize(news_list) for _ in range(runs)]
 
     results = await asyncio.gather(*tasks)
     combined_news = []
     for result in results:
-        combined_news.extend(result.output.relevant_news)
+        combined_news.extend(result.final_output)
 
-    return combined_news
+    print(combined_news)
 
     #print(summarize_news.final_output)
-    save_json(combined_news.final_output, "summarized_news")
+    save_json(combined_news, "summarized_news")
 
     #screener_data_dataframe=scrape()
     #save_dataframe_as_json(screener_data_dataframe)

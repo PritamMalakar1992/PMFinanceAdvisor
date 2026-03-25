@@ -3,9 +3,12 @@ from typing import List, Literal
 
 
 class RelevantNewsItem(BaseModel):
+    
+    index: int = Field(..., description="Original index from input [INDEX=X]")
+
     headline: str = Field(..., description="Original news headline")
 
-    summary: str = Field(
+    summary: str = Field(   
         ...,
         description="2-4 line concise summary optimized for LLM consumption, including event and stock/sector impact"
     )
