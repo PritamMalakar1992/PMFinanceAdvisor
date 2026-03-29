@@ -1,4 +1,5 @@
 from typing import List, Dict, Any
+from agents import function_tool
 from tenacity import retry, stop_after_attempt, wait_exponential
 from ..configs_constants.configs import Configs
 from ..models.search_result import SearchResult
@@ -68,9 +69,12 @@ class FirecrawlService:
             category=category
         )
 
-
-    @retry(stop=stop_after_attempt(3), wait=wait_exponential(min=2, max=10))
-    async def firecrawl_search(self, query: str, limit: int = 1) -> List[SearchResult]:
+    @retry(stop=stop_after_attempt(3), wait=wait_exponential(min=2, max=2))
+    async def firecrawl_search(self, query: str, limit: int = 10) -> List[SearchResult]:
+        """
+        Performs an internet search for any query and returns relevant, up-to-date information from web sources, 
+        including real-time topics like "latest India stock market news" as well as general knowledge queries.
+        """
         try:
             logger.info(f"Firecrawl search: {query}")
 
@@ -162,3 +166,8 @@ class FirecrawlService:
         except Exception as e:
             logger.exception(f"FirecrawlBrowse error: {e}")
             return []
+
+@function_tool
+async def firecrawl_search_tool(query: str = "India stock market news"):
+    tools_instance = FirecrawlService()
+    return await tools_instance.firecrawl_search(query)

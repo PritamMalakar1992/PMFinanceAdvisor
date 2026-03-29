@@ -22,5 +22,14 @@ class Configs:
     USE_MARKETAUX = env_bool("USE_MARKETAUX")
     USE_FINNHUB = env_bool("USE_FINNHUB")
 
-    SCREENER_USER = os.getenv("SCREENER_USER")
+    SCREENER_USER_1 = os.getenv("SCREENER_USER_1")
+    SCREENER_USER_2 = os.getenv("SCREENER_USER_2")
+    SCREENER_USER_3 = os.getenv("SCREENER_USER_3")
     SCREENER_PSWD = os.getenv("SCREENER_PSWD")
+
+
+    SCREENER_CONFIGS = [
+        {"username": SCREENER_USER_1},
+        {"username": SCREENER_USER_2},
+        {"username": SCREENER_USER_3}
+    ]

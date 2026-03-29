@@ -1,0 +1,57 @@
+[
+  {
+    "index": 1,
+    "name": "Aditya Birla Cap",
+    "cmp": 305.75,
+    "score": 6.0,
+    "confidence": 34.0,
+    "investment_amount": 3500.0,
+    "shares": 11.447,
+    "allocation_ratio": 35,
+    "reason": "Catalyst: Large quarter profit beat (Qtr Profit Var % = 40.3) with strong OPM (36.04) and high promoter holding (68.58%) — a clear earnings + operating-leverage setup. Why 15%+ move possible in 1–3 days: a follow-through re-rating after the earnings shock or a short-covering squeeze can produce an explosive move given the earnings surprise. News impact: analyze_stock_market_news flagged strong negative macro/geopolitical headlines (Middle East conflict, rising oil, rupee weakness) which increase volatility and tilt near-term risk lower; this reduces conviction (news adjustment applied). firecrawl_search_tool returned an error on invocation, so no additional search context was available. Net: high earnings momentum but leveraged balance sheet (Debt/Equity 4.86) makes price swings larger — both upside on re-rating and downside on risk-off (news-adjusted confidence lower)."
+  },
+  {
+    "index": 2,
+    "name": "Bajaj Housing",
+    "cmp": 75.85,
+    "score": 4.0,
+    "confidence": 12.0,
+    "investment_amount": 3000.0,
+    "shares": 39.553,
+    "allocation_ratio": 30,
+    "reason": "Catalyst: Strong quarter profit growth (Qtr Profit Var % = 23.17) plus extremely high OPM readout (90.84) and very high promoter holding (86.7%) — suggests earnings-driven momentum and operating leverage. Why 15%+ move possible in 1–3 days: low absolute share price and high operating leverage can lead to large percentage moves on renewed buying or news-driven sentiment changes. News impact: macro/geopolitical negative headlines from analyze_stock_market_news (oil/rates/rupee) increase tail-risk for leveraged balance-sheet names; this was factored as a significant negative adjustment. firecrawl_search_tool returned an error at call-time, so no extra market context was added from that source."
+  },
+  {
+    "index": 3,
+    "name": "Apar Inds.",
+    "cmp": 10608.0,
+    "score": 3.0,
+    "confidence": 10.0,
+    "investment_amount": 1500.0,
+    "shares": 0.1414,
+    "allocation_ratio": 15,
+    "reason": "Catalyst: Meaningful quarterly profit growth (Qtr Profit Var % = 29.8) and strong ROCE (32.7) point to fundamental acceleration. Why 15%+ move possible in 1–3 days: a continued earnings momentum / any positive sector flow could trigger a rapid rerating given the earnings beat and institutional interest potential. News impact: analyze_stock_market_news shows negative macro headlines (Middle East tensions, oil up, rupee weakness) that raise market volatility and have been applied as a negative confidence adjustment. firecrawl_search_tool errored on invocation, so no extra search-derived tailwinds were available."
+  },
+  {
+    "index": 4,
+    "name": "Anthem Bioscienc",
+    "cmp": 681.45,
+    "score": 2.0,
+    "confidence": 14.0,
+    "investment_amount": 1000.0,
+    "shares": 1.4672,
+    "allocation_ratio": 10,
+    "reason": "Catalyst: High OPM (38.15) and strong promoter holding (74.69%) — structurally high-margin business. Why 15%+ move possible in 1–3 days: biotech/healthcare names can gap on product/earnings/analyst headlines; in a volatile market such names can swing 15%+ quickly. Note: Anthem reported negative quarterly profit variance (Qtr Profit Var % = -10.85), which lowers fundamental conviction. News impact: analyze_stock_market_news delivered negative macro headlines (geopolitics, oil, rupee) increasing downside/volatility risk; firecrawl_search_tool returned an error when called, so no extra confirming context was available from that tool. Net effect was a negative news haircut to confidence."
+  },
+  {
+    "index": 5,
+    "name": "Astral",
+    "cmp": 1619.1,
+    "score": 1.0,
+    "confidence": 0.0,
+    "investment_amount": 1000.0,
+    "shares": 0.6177,
+    "allocation_ratio": 10,
+    "reason": "Catalyst: Modest quarterly profit increase (Qtr Profit Var % = 5.18) and decent OPM (15.92). Why 15%+ move possible in 1–3 days: less likely than other names — would require a strong sector/earnings surprise or a market-wide rotation into midcaps; probability is low. News impact: analyze_stock_market_news flagged broad negative macro/geopolitical risk (oil up, rupee weakness) which materially reduces short-term upside probability and increases volatility; firecrawl_search_tool call errored and provided no additional context. Result: confidence trimmed to near zero after news adjustment."
+  }
+]

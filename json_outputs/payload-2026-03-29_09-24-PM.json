@@ -1,0 +1,35 @@
+[
+  {
+    "index": 1,
+    "name": "Aditya Birla Cap",
+    "cmp": 305.75,
+    "score": 6.0,
+    "confidence": 38.0,
+    "investment_amount": 3500.0,
+    "shares": 11.447117537,
+    "allocation_ratio": 35,
+    "reason": "Strong earnings shock (Qtr Profit Var 40.3 -> +3; Qtr Sales Var 27.4 -> +1) and high OPM (36.04) signal earnings acceleration and operating leverage. Promoter holding >65 supports stability of large moves. These catalysts can trigger momentum-driven 15%+ moves on breakout volume. News impact: recent Middle East conflict, rising oil and rupee weakness create negative market pressure (news adjustment applied, lowering confidence), but the firm-specific earnings/OPM catalyst still supports an asymmetric upside in a short, high-volatility window."
+  },
+  {
+    "index": 2,
+    "name": "Bajaj Housing",
+    "cmp": 75.85,
+    "score": 4.0,
+    "confidence": 16.0,
+    "investment_amount": 2500.0,
+    "shares": 32.959031336,
+    "allocation_ratio": 25,
+    "reason": "Quarterly profit surprise (Qtr Profit Var 23.17 -> +2) plus extreme OPM reading (90.84 -> +1) and very high promoter holding (86.7 -> +1) create a strong earnings/momentum setup able to produce sharp short-term moves on re-rating or flows. News impact: broad negative macro headlines (Middle East tensions, oil up, rupee weak) reduced conviction (news adjustment), but concentrated allocation anticipates volatility expansion enabling 15%+ swings."
+  },
+  {
+    "index": 3,
+    "name": "Apar Inds.",
+    "cmp": 10608.0,
+    "score": 3.0,
+    "confidence": 10.0,
+    "investment_amount": 1000.0,
+    "shares": 0.094276964,
+    "allocation_ratio": 10,
+    "reason": "Solid quarterly profit beat (Qtr Profit Var 29.8 -> +2) and baseline momentum (3m proxy -> +1) create an earnings-driven breakout possibility. Although OPM and promoter signals are weaker, tight position sizing reflects lower conviction. News impact: negative geopolitical/macro news (oil/rupee) reduced overall conviction (news adjustment applied) but the earnings surprise can still produce >15% moves in a high-volatility environment."
+  }
+]

@@ -1,6 +1,9 @@
+from asyncio.tasks import as_completed
+from concurrent.futures import ThreadPoolExecutor
 import time
 import logging
 import pandas as pd
+from typing import List
 
 from selenium import webdriver
 from selenium.webdriver.common.by import By
@@ -124,14 +127,14 @@ def extract_all_pages(driver):
     return pd.DataFrame(all_data, columns=headers)
 
 
-def scrape():
+def scrape(screener_user: str):
     for attempt in range(1, MAX_RETRIES + 1):
         logging.info(f"Attempt {attempt}")
 
         driver = setup_driver(C.RUN_HEADLESS)
 
         try:
-            login(driver, Configs.SCREENER_USER, Configs.SCREENER_PSWD)
+            login(driver, screener_user, Configs.SCREENER_PSWD)
             open_raw(driver)
 
             df = extract_all_pages(driver)
@@ -149,3 +152,42 @@ def scrape():
 
         finally:
             driver.quit()
+
+def scrape_from_multi_user():
+    def worker(user):
+        return scrape(user["username"])  # normal function
+
+    with ThreadPoolExecutor(max_workers=1) as executor:
+        df_list = list(executor.map(worker, Configs.SCREENER_CONFIGS))
+
+    df_final = merge_dfs_on_name(
+        [df for df in df_list if df is not None and not df.empty]
+    )
+
+    return df_final
+
+def merge_dfs_on_name(dfs: List[pd.DataFrame], key: str = "Name") -> pd.DataFrame:
+    if not dfs:
+        return pd.DataFrame()
+    processed_dfs = []
+    for i, df in enumerate(dfs):
+        if key not in df.columns:
+            raise ValueError(f"Key column '{key}' not found in DataFrame {i}")
+
+        temp = df.copy()
+
+        if "Sr.No" in temp.columns:
+            temp = temp.drop(columns=["Sr.No"])
+
+        temp = temp.groupby(key, as_index=False).first()
+
+        temp = temp.set_index(key)
+        processed_dfs.append(temp)
+
+    df_final = processed_dfs[0].copy()
+
+    for df in processed_dfs[1:]:
+        df_final = df_final.combine_first(df)
+        df_final.update(df)
+
+    return df_final.reset_index()        

@@ -1,3 +1,4 @@
+from app.agents.stock_analyst_agent.stock_picker_agent import pick_stocks_once, pick_stocks_with_consensus
 from app.agents.summarizer_agent.summarizer import summarize, summarize_with_iterations
 from app.news_services.news_injest_services import NewsAPIService, MarketauxService, FinnhubService, NewsDataService, WorldNewsAPIService
 from app.stock_services.nse_stock_info_service import NseService
@@ -5,7 +6,7 @@ from app.stock_services.yahoo_stock_info_service import StockService
 from app.stock_services.indian_stock_info_service import IndianStockService
 from app.utilities.json_utiliti import save_json, save_json_without_index, save_dataframe_as_json, save_llm_news_json
 from app.utilities.firecrawl_utiliti import FirecrawlService
-from app.utilities.screener_scraper import scrape
+from app.utilities.screener_scraper import scrape, scrape_from_multi_user
 from .configs_constants.configs import Configs
 import asyncio
 import sys
@@ -24,6 +25,7 @@ async def main():
     nse_service = NseService()
     indian_stock_service = IndianStockService()
 
+    """
     API_TASKS = {
         "USE_NEWSAPI": newsapi.start_injest_from_newsapi,
         "USE_NEWSDATA": newsdata.start_injest_from_newsdata,
@@ -48,12 +50,17 @@ async def main():
     news_list = "\n".join(
     f"Index - {index}: {news_item.news}"
     for index, news_item in enumerate(combined))
-
-    combined_news=await summarize_with_iterations(news_list, 2)  
-    save_llm_news_json(combined_news, "summarized_news")
+    
+    """
+    #combined_news=await summarize_with_iterations(news_list, 2)  
+    #save_llm_news_json(combined_news, "summarized_news")
 
     #screener_data_dataframe=scrape()
     #save_dataframe_as_json(screener_data_dataframe)
+    df_final=scrape_from_multi_user()
+    df_final_json=save_dataframe_as_json(df_final)
+
+    save_json(await pick_stocks_with_consensus(df_final_json), "final_recomendation")
 
     #print(await indian_stock_service.get_stock_by_name("BALKRISIND"))
 

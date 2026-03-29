@@ -1,0 +1,57 @@
+[
+  {
+    "index": 1,
+    "name": "Aditya Birla Cap",
+    "cmp": 305.75,
+    "score": 6.0,
+    "confidence": 36.0,
+    "investment_amount": 3500.0,
+    "shares": 11.446112715992514,
+    "allocation_ratio": 35,
+    "reason": "Strong earnings shock (Qtr Profit Var +40.3, Qtr Sales Var +27.4) and very high OPM (36.04) create an earnings + volatility catalyst. High promoter holding (68.58) and high leverage (Debt/Equity 4.86) can amplify a short-term directional move — making a 15%+ move possible on a momentum breakout or panic re-rating. News impact: analyst news (analyze_stock_market_news) highlights Middle East conflict, rising oil and rupee weakness producing broader market risk; search results (firecrawl_search_tool) show market-wide risk sentiment from Iran tensions. I applied a negative news adjustment (market risk), reducing confidence accordingly while keeping the company-specific earnings/volatility thesis intact."
+  },
+  {
+    "index": 2,
+    "name": "Bajaj Housing",
+    "cmp": 75.85,
+    "score": 4.0,
+    "confidence": 14.0,
+    "investment_amount": 2500.0,
+    "shares": 32.96695708154545,
+    "allocation_ratio": 25,
+    "reason": "Clear earnings momentum (Qtr Profit Var +23.17) combined with extremely high OPM (90.84) and very high promoter holding (86.7) — a concentrated, low-float-ish housing/finance setup that can gap 15%+ on a credit/earnings surprise or short-covering rally. However, high leverage (Debt/Equity 4.44) increases downside risk and amplifies moves. News impact: macro headlines from analyze_stock_market_news point to Middle East-driven oil and rupee weakness causing risk-off; firecrawl_search_tool results confirm elevated market volatility — this reduces confidence and increases likelihood of short-term whipsaw despite the stock's breakout potential."
+  },
+  {
+    "index": 3,
+    "name": "Apar Inds.",
+    "cmp": 10608.0,
+    "score": 3.0,
+    "confidence": 8.0,
+    "investment_amount": 1500.0,
+    "shares": 0.14140075417971304,
+    "allocation_ratio": 15,
+    "reason": "Earnings acceleration (Qtr Profit Var +29.8) and strong ROCE (32.7) provide a fundamental catalyst; industrial/cable demand momentum can trigger sharp short-term re-rating on order wins or margin surprise. Lower OPM (8.46) limits leverage but good earnings surprise potential makes a 15%+ intraday/ multi-day move possible in thin liquidity scenarios. News impact: market-wide negative signals from analyze_stock_market_news (geopolitical risk, oil up) and corroborating search results (firecrawl_search_tool) lower market appetite for risk — confidence trimmed to reflect macro headwinds that could either amplify a downside gap or produce volatile breakouts."
+  },
+  {
+    "index": 4,
+    "name": "Anthem Bioscienc",
+    "cmp": 681.45,
+    "score": 2.0,
+    "confidence": 12.0,
+    "investment_amount": 1500.0,
+    "shares": 2.20012153782641,
+    "allocation_ratio": 15,
+    "reason": "High OPM (38.15), strong ROA/ROCE metrics and promoter holding (74.69) provide a quality earnings backdrop. Although recent quarter profit declined (Qtr Profit Var -10.85), any near-term positive earnings revision or contract win can trigger >15% moves in a midcap pharma name. News impact: analyze_stock_market_news flags broad risk from Middle East tensions and rupee weakness; firecrawl_search_tool search results show market jitters — these macro factors lower conviction and raise volatility, so confidence is reduced despite company-level upside catalysts."
+  },
+  {
+    "index": 5,
+    "name": "Astral",
+    "cmp": 1619.1,
+    "score": 1.0,
+    "confidence": 0.0,
+    "investment_amount": 1000.0,
+    "shares": 0.6176782786040609,
+    "allocation_ratio": 10,
+    "reason": "Modest recent earnings (Qtr Profit Var +5.18) and steady sales growth (Qtr Sales Var +10.34). While not a top-scoring breakout candidate by the scoring filter, Astral can still exhibit volatility on distribution/technical breakouts in the current market. News impact: analyze_stock_market_news indicates escalating geopolitical tensions and oil/rupee pressure; firecrawl_search_tool results show broader market weakness — given these negative macro signals, confidence is set to zero (significant macro risk may swamp company-specific moves)."
+  }
+]

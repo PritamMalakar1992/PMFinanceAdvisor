@@ -106,7 +106,8 @@ def save_dataframe_as_json(
     with open(file_path, "w", encoding="utf-8") as f:
         json.dump(json_data, f, indent=4, ensure_ascii=False)
 
-    print(f"JSON saved at: {file_path}")        
+    print(f"JSON saved at: {file_path}")
+    return json_data      
 
 def save_llm_news_json(
     data: Any,
@@ -143,4 +144,4 @@ def save_llm_news_json(
             ensure_ascii=False,
         )
 
-    return file_path    
+    return payload    
