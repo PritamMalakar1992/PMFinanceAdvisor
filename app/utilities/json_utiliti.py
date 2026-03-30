@@ -114,7 +114,7 @@ def save_llm_news_json(
     filename: str = "news_output.json",
     folder_name: Optional[str] = None,
     base_path: Optional[str] = None
-) -> Path:
+    ) -> Path:
 
     file_path = _build_path(base_path, folder_name, filename)
 

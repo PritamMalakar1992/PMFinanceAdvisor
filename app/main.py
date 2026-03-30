@@ -24,8 +24,7 @@ async def main():
     stockService = StockService()
     nse_service = NseService()
     indian_stock_service = IndianStockService()
-
-    """
+    
     API_TASKS = {
         "USE_NEWSAPI": newsapi.start_injest_from_newsapi,
         "USE_NEWSDATA": newsdata.start_injest_from_newsdata,
@@ -40,6 +39,7 @@ async def main():
         if getattr(Configs, key, False)
     ]
 
+    """
     results = await asyncio.gather(*tasks, return_exceptions=True)
     combined = [item for sublist in results for item in sublist]
     
@@ -49,16 +49,16 @@ async def main():
     
     news_list = "\n".join(
     f"Index - {index}: {news_item.news}"
-    for index, news_item in enumerate(combined))
-    
+    for index, news_item in enumerate(combined))    
     """
-    #combined_news=await summarize_with_iterations(news_list, 2)  
+    #combined_news = await summarize_with_iterations(news_list, 2)  
     #save_llm_news_json(combined_news, "summarized_news")
 
-    #screener_data_dataframe=scrape()
+    #screener_data_dataframe = scrape()
     #save_dataframe_as_json(screener_data_dataframe)
-    df_final=scrape_from_multi_user()
-    df_final_json=save_dataframe_as_json(df_final)
+
+    df_final = scrape_from_multi_user()
+    df_final_json = save_dataframe_as_json(df_final)
 
     save_json(await pick_stocks_with_consensus(df_final_json), "final_recomendation")
 
@@ -91,7 +91,6 @@ async def main():
 
     """
     serper.dev can be used to extract more news 
-    need to scrape more columns for fundamental data from screener.in
     """
 
 if __name__ == "__main__":

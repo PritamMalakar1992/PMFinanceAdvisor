@@ -158,9 +158,9 @@ summarizer_agent = Agent(
     model_settings=ModelSettings(temperature=0))
 
 async def summarize(message: str):
-    #with trace("Automated Summarizer"):
+    with trace("Automated Summarizer"):
         result = await Runner.run(summarizer_agent, message)
-        return result.final_output.relevant_news  # return only structured output
+        return result.final_output.relevant_news
 
 async def summarize_with_iterations(news_list: str, runs: int = 1):
     tasks = [summarize(news_list) for _ in range(runs)]
@@ -217,28 +217,4 @@ async def analyze_stock_market_news(runs: int = 1):
     for index, news_item in enumerate(combined))
     
     combined_news= await summarize(news_list)  
-    return save_llm_news_json(combined_news, "summarized_news")["relevant_news"]
-    """
-    return combined_news
-    
-    tasks = [summarize(combined_news) for _ in range(runs)]
-    results = await asyncio.gather(*tasks)
-
-    combined_dict = OrderedDict[Any, RelevantNewsItem]()
- 
-    for run_output in results:
-        for item in run_output.relevant_news:
-            idx = item.index
-
-            if idx not in combined_dict:
-                combined_dict[idx] = item
-
-    combined_news = list[RelevantNewsItem](combined_dict.values())[:2]
-    
-    return {
-      "relevant_news": [
-          item.model_dump() if hasattr(item, "model_dump") else item.dict()
-          for item in combined_news
-      ]
-    }
-    """
+    return save_llm_news_json(combined_news, "summarized_news")["relevant_news"]    
