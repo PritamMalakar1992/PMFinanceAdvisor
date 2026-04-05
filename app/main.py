@@ -1,4 +1,5 @@
 from app.agents.stock_analyst_agent.stock_picker_agent import pick_stocks_once, pick_stocks_with_consensus
+from app.agents.stock_moderation_agent.stock_picker_consolidation_agent import consolidate_with_consensus
 from app.agents.summarizer_agent.summarizer import summarize, summarize_with_iterations
 from app.news_services.news_injest_services import NewsAPIService, MarketauxService, FinnhubService, NewsDataService, WorldNewsAPIService
 from app.stock_services.nse_stock_info_service import NseService
@@ -60,7 +61,8 @@ async def main():
     df_final = scrape_from_multi_user()
     df_final_json = save_dataframe_as_json(df_final)
 
-    save_json(await pick_stocks_with_consensus(df_final_json), "final_recomendation")
+    #save_json(await pick_stocks_with_consensus(df_final_json), "final_recomendation")
+    save_json(await consolidate_with_consensus(df_final_json), "final_recomendation")
 
     #print(await indian_stock_service.get_stock_by_name("BALKRISIND"))
 

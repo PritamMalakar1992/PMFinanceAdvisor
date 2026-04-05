@@ -13,6 +13,7 @@ class SelectedStock(BaseModel):
     reason: str = ""
     buy_or_Sell: str = ""
     target_price: str = ""
+    comments_from_judge: str = ""
 
 
 class StockSelectionOutput(BaseModel):

@@ -1,0 +1,67 @@
+[
+  {
+    "index": 1,
+    "name": "Natl. Aluminium",
+    "cmp": 400.2,
+    "score": 9.0,
+    "confidence": 70.0,
+    "investment_amount": 1000.0,
+    "shares": 2.0,
+    "allocation_ratio": 10,
+    "reason": "BUY — Setup: strong multi-horizon momentum (3mth +22.7%, 6mth +74.6%, 1yr +120%) with large profit growth and very high operating margins (OPM 45.95%). Score drivers: momentum (large recent run), OPM (>25), clean balance sheet (Debt/Equity ~0), breakout characteristics (sustained multi-session advance vs prior levels). Target: 472.24 (≈ +18% from CMP) — inside allowed 12–25% BUY target band. Why ≥12% is realistic in 1–3 days: recent price acceleration (3mth +22.7%) and historically explosive moves make a 12–20% follow-through plausible on continuation + positive sector flows. Confirmation: price has shown strong recent upward momentum (multi-session strength) and volume/volatility expansion is implied by large 6–12 month returns. News & sentiment: market-wide risk-off (crude-led volatility, FII outflows) increases headline volatility — but metals/commodity names often decouple and can have leadership rallies when commodity-driven flows turn positive. Final conviction balances strong internal momentum/OPM vs broader market weakness; position sized conservatively. Market context: today’s headlines show crude/oil-driven volatility and FII selling which raises index risk but does not negate a commodity/metal-specific breakout thesis.",
+    "buy_or_Sell": "BUY",
+    "target_price": "472.24"
+  },
+  {
+    "index": 2,
+    "name": "Hindustan Copper",
+    "cmp": 479.4,
+    "score": 8.0,
+    "confidence": 82.0,
+    "investment_amount": 3500.0,
+    "shares": 7.0,
+    "allocation_ratio": 35,
+    "reason": "BUY — Setup: extremely large quarter-on-quarter profit and sales shock (Qtr Profit Var % 148.5, Sales Qtr Var % 109.7), strong OPM (37.9) and very large 1yr return (≈ +104%). Score drivers: large earnings shock, strong operating leverage, promoter stability, and prior sharp momentum. Target: 575.28 (≈ +20% from CMP) — within 12–25% BUY target band. Why ≥12% is realistic in 1–3 days: the stock shows both an earnings shock and recent volatility expansion — such combinations historically produce sharp short-term continuation moves; sector/commodity re-rating potential amplifies upside. Breakout confirmation: big earnings surprise + subsequent price action indicates fresh accumulation (volume implied from quarter shock). News & sentiment: while macro headlines show crude-driven volatility and FII selling (negative for market beta), mining/metal cyclicals (copper) can benefit from commodity re-pricing and selective flows; that supports a higher final conviction for this metal name. Risk note: broader market weakness may increase intraday whipsaw — use tight execution and risk limits.",
+    "buy_or_Sell": "BUY",
+    "target_price": "575.28"
+  },
+  {
+    "index": 3,
+    "name": "Waaree Energies",
+    "cmp": 3073.0,
+    "score": 8.0,
+    "confidence": 71.0,
+    "investment_amount": 1000.0,
+    "shares": 0.0,
+    "allocation_ratio": 10,
+    "reason": "BUY — Setup: very large quarterly earnings/sales acceleration (Qtr Profit Var % 158.1, Sales Qtr Var % 118.8) and strong profitability / ROE (ROE ~27%). Score drivers: earnings shock, profit growth, operating leverage (ROE) and demonstrated ability to move on news. Target: 3533.95 (≈ +15% from CMP) — inside 12–25% BUY band. Why ≥12% is realistic in 1–3 days: earnings shock + high reported sales usually trigger sharp short-term follow-through in this midcap energy/renewables supplier; combined with headline-driven volatility it can accelerate into a >12% move on continuation. Breakout confirmation: recent quarter shock and price action imply a fresh leg higher (range expansion). News & sentiment: overall market is under pressure from crude-driven volatility and FII outflows (negative), which raises index risk — nevertheless the company-specific earnings acceleration supports a stock-specific breakout thesis; final confidence tempered by broader negative sentiment. Positioning note: CMP is high vs allocation size (shares computed as floor(investment/CMP) -> 0 shares at this allocation); trade execution should ensure minimum lot / capital available or scale allocation if single-share exposure required.",
+    "buy_or_Sell": "BUY",
+    "target_price": "3533.95"
+  },
+  {
+    "index": 4,
+    "name": "Lloyds Metals",
+    "cmp": 1319.6,
+    "score": 6.5,
+    "confidence": 74.0,
+    "investment_amount": 1500.0,
+    "shares": 1.0,
+    "allocation_ratio": 15,
+    "reason": "BUY — Setup: very large earnings and sales surprise (Qtr Profit Var % 169.1, Qtr Sales Var % 201.9), strong ROE/OPM, and evidence of volatile, explosive moves historically. Score drivers: earnings shock, operating leverage, promoter interest and prior multi-period growth. Target: 1517.54 (≈ +15% from CMP) — within 12–25% BUY band. Why ≥12% is realistic in 1–3 days: the large earnings/sales surprise typically sparks momentum continuation in this industrial/mining-adjacent name; volatility expansion and institutional interest often amplify these moves rapidly. Breakout confirmation: big quarter and history of range expansion create a valid momentum breakout thesis. News & sentiment: index-level risk (oil, FII selling) raises general volatility but does not remove the company-specific catalyst; metals/industrial names can run despite weak breadth when earnings surprise is strong.",
+    "buy_or_Sell": "BUY",
+    "target_price": "1517.54"
+  },
+  {
+    "index": 5,
+    "name": "Apar Inds.",
+    "cmp": 9887.5,
+    "score": 8.5,
+    "confidence": 74.0,
+    "investment_amount": 3000.0,
+    "shares": 0.0,
+    "allocation_ratio": 30,
+    "reason": "BUY — Setup: sustained multi-horizon momentum (3mth +18.7%, 6mth +17.5%, 1yr +80%), positive earnings acceleration (Qtr Profit Var % 29.8) and strong ROE/ROCE. Score drivers: strong momentum, earnings pick-up, and quality metrics. Target: 11063.00 (≈ +12% from CMP) — uses the minimum 12% BUY target to stay realistic. Why ≥12% is realistic in 1–3 days: the stock is in an advanced early breakout stage (recent multi-session strength) and a fresh leg on continuation is plausible after the momentum/earnings combination. Breakout confirmation: sustained move vs prior trading levels and significant 1yr run; volume implied by rapid multi-month gains. News & sentiment: overall market weakness from crude-driven volatility and FII selling increases index risk, so use tight risk control — but company-specific momentum and earnings support a 12%+ short-term upside probability. Positioning note: CMP is well above this allocation so floor(investment/CMP) -> 0 shares at this allocation; increase capital per-trade if single-share exposure is required.",
+    "buy_or_Sell": "BUY",
+    "target_price": "11063.00"
+  }
+]

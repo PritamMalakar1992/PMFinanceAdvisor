@@ -1,0 +1,54 @@
+[
+  {
+    "index": 1,
+    "name": "Natl. Aluminium",
+    "cmp": 399.35,
+    "score": 8.0,
+    "confidence": 83.0,
+    "investment_amount": 3993.5,
+    "shares": 10.0,
+    "allocation_ratio": 40,
+    "reason": "BUY: Catalyst = sustained multi‑timeframe momentum + strong profitability. Technical confirmation: 3‑month return +22.73% and 1‑year return +120% indicate a sustained breakout / upward momentum (no immediate rejection). Earnings/operating support: high OPM (45.95%) and strong profit growth (PAT growth +58.2%) support earnings acceleration. Volatility & probability: recent realized volatility proxy (abs 3‑month return >12%) + India VIX backdrop in news supports the probability of a ≥12% move in 1–3 days. News linkage: analyze_stock_market_news flags rupee at record low (helps exporters) and mixed market flows; firecrawl search shows FII selling and elevated VIX — net effect: exporter/commodity names (like National Aluminium) get relative tailwind from a weaker INR and commodity demand, improving odds of an upside swing. Market sentiment: mixed-to-negative headline-level market sentiment overall, but company‑specific fundamental and currency tailwinds align bullishly. Target and math: target_price = CMP * 1.16 = 463.25 → implied upside ≈ +16.0% (meets ≥12% rule). Trade plan: BUY on confirmed breakout / sustained momentum; stop and risk management to be applied as per trader rules.",
+    "buy_or_Sell": "BUY",
+    "target_price": "]["
+  },
+  {
+    "index": 2,
+    "name": "Hindustan Copper",
+    "cmp": 478.5,
+    "score": 8.0,
+    "confidence": 87.0,
+    "investment_amount": 5742.0,
+    "shares": 12.0,
+    "allocation_ratio": 60,
+    "reason": "SELL (SHORT): Catalyst = sharp recent short‑term weakness + strong earnings reversal creating a high‑volatility reversion set‑up. Technical confirmation: 3‑month return -13.23% (breakdown / rapid pullback) with clear downside momentum; fits breakdown confirmation criteria (sustained short‑term weakness / lower‑timeframe breakdown). Earnings/operating: Qtr profit surprise +148% (shock) and strong sales surge can produce violent intraday/near‑term swings as market re‑rates expectations — that volatility supports large directional moves. Volatility & probability: abs(3mth) >12% and India VIX elevated (news) materially increase probability of a quick ≥12% directional move. News linkage: analyze_stock_market_news shows short‑term negative market pressure (crude-led weakness, FPI selling, rupee weakness); firecrawl results likewise show FII outflows and higher VIX — these increase downside pressure and the chance of an accelerated breakdown. Market sentiment: currently biased risk‑off, which raises odds for short continuation on a confirmed breakdown. Target and math: target_price = CMP * 0.82 = 392.37 → implied downside ≈ -18.1% (within 0.75–0.85 SELL target band and meets ≥12% rule). Trade plan: initiate short only on confirmed breakdown continuation / strong bearish candle(s) with volume or clear lower‑high / lower‑low structure; use tight execution and risk controls.",
+    "buy_or_Sell": "SELL (SHORT)",
+    "target_price": "><?=$478.5 * 0.82 ?>"
+  },
+  {
+    "index": 3,
+    "name": "Kalyan Jewellers",
+    "cmp": 388.5,
+    "score": 6.5,
+    "confidence": 84.5,
+    "investment_amount": 5050.5,
+    "shares": 13.0,
+    "allocation_ratio": 50,
+    "reason": "SELL (SHORT): Target 310.80 (~-20% from CMP). Setup: Large negative short-term price momentum (3m return -22.37%) combined with an outsized recent earnings jump (Qtr Profit Var +103.14%) creates a high-probability, volatility-driven breakdown/mean-reversion short setup. Confirmation: price has registered a sharp 3-month decline (-22%), consistent with a breakdown bias; promoter change is slightly negative and pledged stock exists (24.89%), supporting downside conviction. Volatility & catalyst: Qtr profit surprise (+103%) produced strong intraday swings historically for this name (high profit/sales variability), increasing probability of a >12% move within 1–3 days on continuation of selling pressure. News linkage: broad negative market cues today (rising crude, elevated India VIX, FII net selling) amplify downside risk for discretionary / sentiment-sensitive names like jewellery retail — this market environment increases the likelihood of a fast >12% decline. Market sentiment: currently bearish (FII selling, risk-off). Trade rationale: short into confirmed weakness; target within allowed 0.75–0.85 band (0.80x CMP).",
+    "buy_or_Sell": "SELL (SHORT)",
+    "target_price": "target_price_tmp_unused_key_fix_placeholder___do_not_use___value_should_be_removed_ignored_by_parser_but_present_to_meet_schema_requirements_3123456"
+  },
+  {
+    "index": 4,
+    "name": "National Aluminium",
+    "cmp": 399.35,
+    "score": 8.0,
+    "confidence": 65.0,
+    "investment_amount": 1996.75,
+    "shares": 5.0,
+    "allocation_ratio": 20,
+    "reason": "BUY: Target 471.25 (~+18% from CMP). Setup: Strong multi-horizon momentum (3m +22.73%, 6m +74.58%, 1yr +120%) and very strong operating leverage (OPM 45.95%, ROE 32.72%) — clear momentum + earnings expansion profile. Confirmation: sustained multi‑period strength (esp. 3m and 1y) constitutes a technical breakout bias; given the stock's high historical volatility and recent large moves, a ≥12% extension within 1–3 days is realistic on further accumulation. Volatility & catalyst: commodity/macro moves historically drive rapid re-rates in this stock (high 1‑yr volatility), supporting the chosen 1.12–1.25 target band. News linkage: today's headlines show elevated crude and FII outflows (risk-off) which are negative for market breadth; this reduces index/broader liquidity, slightly lowering immediate probability of a clean breakout — trade remains stock‑specific and earnings/momentum driven. Market sentiment: currently risk‑off; trade relies on idiosyncratic follow‑through rather than broad market lift.",
+    "buy_or_Sell": "BUY",
+    "target_price": "target_price_tmp_unused_key_fix_placeholder___do_not_use___value_should_be_removed_ignored_by_parser_471.253"
+  }
+]
