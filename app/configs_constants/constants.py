@@ -7,8 +7,8 @@ FIRECRAWL_BASE_URL = "https://api.firecrawl.dev/v1"
 
 SCREENER_LOGIN_URL = "https://www.screener.in/login/"
 SCREENER_RAW_URL_OLD = "https://www.screener.in/screen/raw/?sort=&order=&source_id=&query=Promoter+holding++%3E+51+AND%0D%0ADebtor+days++%3C+90+AND%0D%0ASales+growth+5Years+%3E+50+AND%0D%0AProfit+growth+5Years+%3E+50"
-SCREENER_RAW_URL = "https://www.screener.in/screen/raw/?sort=&order=&source_id=3560629&query=Promoter+holding++%3E+51+AND%0D%0ADebtor+days++%3C+90+AND%0D%0ASales+growth+5Years+%3E+10+AND%0D%0AProfit+growth+5Years+%3E+12+AND%0D%0AMarket+Capitalization+%3E+33000+AND%0D%0A+Market+Capitalization+%3C+90000"
-
+SCREENER_RAW_URL_OLD = "https://www.screener.in/screen/raw/?sort=&order=&source_id=3560629&query=Promoter+holding++%3E+51+AND%0D%0ADebtor+days++%3C+90+AND%0D%0ASales+growth+5Years+%3E+10+AND%0D%0AProfit+growth+5Years+%3E+12+AND%0D%0AMarket+Capitalization+%3E+33000+AND%0D%0A+Market+Capitalization+%3C+90000"
+SCREENER_RAW_URL = "https://www.screener.in/screen/raw/?sort=current+price&order=&source_id=3560629&query=Promoter+holding++%3E+51+AND%0D%0ADebtor+days++%3C+90+AND%0D%0ASales+growth+5Years+%3E+10+AND%0D%0AProfit+growth+5Years+%3E+12+AND%0D%0ACurrent+price+%3C+500%0D%0AAND+Return+over+3months+%3E+0%0D%0AAND+Return+over+6months+%3E+0%0D%0A%0D%0A%0D%0A%0D%0A"
 
 INDIAN_STOCK_BASE_URL = "https://stock.indianapi.in/"
 
