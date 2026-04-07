@@ -102,14 +102,17 @@ def save_dataframe_as_json(
             converted = pd.to_numeric(df[col], errors="coerce")
             df[col] = converted.where(converted.notna(), df[col])
 
-    json_data = df.to_dict(orient=orient)
+    # All columns after CMP Rs. are not needed for the JSON conversion or in output for return calculation, actual dataframe untouched for further analysis by LLM
+    end_idx = df.columns.get_loc("CMP Rs.") + 1
+    df_json_data = df.to_dict(orient=orient)
+    json_data = df.iloc[:, :end_idx].to_dict(orient=orient)
 
     if save_in_disk:
         with open(file_path, "w", encoding="utf-8") as f:
             json.dump(json_data, f, indent=4, ensure_ascii=False)
 
     print(f"JSON saved at: {file_path}")
-    return json_data      
+    return df_json_data      
 
 def save_llm_news_json(
     data: Any,
