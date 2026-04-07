@@ -73,6 +73,7 @@ def save_json_without_index(
 
 def save_dataframe_as_json(
     df: pd.DataFrame,
+    save_in_disk: bool = True,
     filename: str = "payload.json",
     folder_name: Optional[str] = "json_outputs",
     base_path: Optional[str] = None,
@@ -103,8 +104,9 @@ def save_dataframe_as_json(
 
     json_data = df.to_dict(orient=orient)
 
-    with open(file_path, "w", encoding="utf-8") as f:
-        json.dump(json_data, f, indent=4, ensure_ascii=False)
+    if save_in_disk:
+        with open(file_path, "w", encoding="utf-8") as f:
+            json.dump(json_data, f, indent=4, ensure_ascii=False)
 
     print(f"JSON saved at: {file_path}")
     return json_data      

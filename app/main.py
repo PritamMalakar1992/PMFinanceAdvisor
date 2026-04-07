@@ -16,6 +16,7 @@ async def main():
     if hasattr(sys.stdout, "reconfigure"):
         sys.stdout.reconfigure(encoding="utf-8", errors="replace")
 
+    """
     newsapi = NewsAPIService()
     newsdata = NewsDataService()
     marketaux = MarketauxService()
@@ -40,7 +41,6 @@ async def main():
         if getattr(Configs, key, False)
     ]
 
-    """
     results = await asyncio.gather(*tasks, return_exceptions=True)
     combined = [item for sublist in results for item in sublist]
     
@@ -52,6 +52,7 @@ async def main():
     f"Index - {index}: {news_item.news}"
     for index, news_item in enumerate(combined))    
     """
+    
     #combined_news = await summarize_with_iterations(news_list, 2)  
     #save_llm_news_json(combined_news, "summarized_news")
 
@@ -59,7 +60,7 @@ async def main():
     #save_dataframe_as_json(screener_data_dataframe)
 
     df_final = scrape_from_multi_user()
-    df_final_json = save_dataframe_as_json(df_final)
+    df_final_json = save_dataframe_as_json(df_final, save_in_disk=False)
 
     #save_json(await pick_stocks_with_consensus(df_final_json), "final_recomendation")
     save_json(await consolidate_with_consensus(df_final_json), "final_recomendation")

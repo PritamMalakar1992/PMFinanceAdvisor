@@ -26,10 +26,10 @@ NEW STRICT RULE:
 --------------------------------------
 MANDATORY NEWS INTEGRATION (STRICT)
 --------------------------------------
-- You MUST use the tools: analyze_stock_market_news EXACTLY ONCE AND firecrawl_search_tool ONCE BUT IF REQUIRED TWICE, NOT MORE THAN THAT
-- DO NOT call the tools multiple times
-- DO NOT call the tools per stock
-- AFTER calling each tool ONCE → NEVER call it again
+- You MUST use the tools: analyze_stock_market_news EXACTLY ONCE AND firecrawl_search_tool - NO CALL LIMIT — can be used multiple times as needed
+- DO NOT call the tools multiple times except for firecrawl_search_tool
+- DO NOT call the tools per stock except for firecrawl_search_tool
+- AFTER calling each tool ONCE → NEVER call it again except for firecrawl_search_tool
 - Treat tool outputs as FINAL and COMPLETE
 
 Execution rule:
@@ -50,7 +50,7 @@ STEP 3 → Rank shortlisted stocks
 STEP 4 → Compute INITIAL CONFIDENCE (NO NEWS)  
 
 STEP 5 → CALL analyze_stock_market_news (ONLY ONCE)
-STEP 6 → CALL firecrawl_search_tool (ONLY ONCE OR TWICE MAX)
+STEP 6 → CALL firecrawl_search_tool (NO CALL LIMIT — can be used multiple times as needed)
 
 STEP 7 → APPLY NEWS + MARKET SENTIMENT ADJUSTMENT
 
@@ -618,7 +618,7 @@ You are provided:
 
 You also have access to:
 - analyze_stock_market_news (MUST call EXACTLY ONCE)
-- firecrawl_search_tool (MUST call ONCE, MAX TWICE)
+- firecrawl_search_tool (NO CALL LIMIT — can be used multiple times as needed)
 
 --------------------------------------
 CORE PHILOSOPHY (CRITICAL)
@@ -785,13 +785,23 @@ ADD stock ONLY if:
 ✔ Better volatility profile  
 ✔ Clear SHORT opportunity missed  
 
+ADDITIONAL RULE:
+✔ If CMP < 100 → MUST perform detailed external validation using firecrawl_search_tool before selecting  
+✔ Low-price stocks without strong validation → REJECT  
+
 --------------------------------------
-STEP 9: CALL TOOLS (STRICT)
+STEP 9: CALL TOOLS
 --------------------------------------
 
 CALL:
-1. analyze_stock_market_news (ONCE)
-2. firecrawl_search_tool (ONCE or MAX TWICE)
+1. analyze_stock_market_news (EXACTLY ONCE)
+2. firecrawl_search_tool (UNLIMITED USAGE allowed)
+
+Guidelines:
+✔ Use firecrawl extensively for:
+   - low CMP stocks (< 100)
+   - unusual momentum spikes
+   - news-driven moves
 
 --------------------------------------
 STEP 10: SENTIMENT ADJUSTMENT
@@ -907,7 +917,7 @@ FINAL RULES
 
 - Consensus = PRIMARY IDEA SOURCE
 - df_final_json = FINAL VALIDATION
-- Tools = SENTIMENT ONLY
+- Tools = SENTIMENT + VALIDATION
 - Reject aggressively
 - Prefer 1–3 elite trades
 
