@@ -116,6 +116,7 @@ def save_dataframe_as_json(
 
 def save_llm_news_json(
     data: Any,
+    save_in_disk: bool = True,
     filename: str = "news_output.json",
     folder_name: Optional[str] = None,
     base_path: Optional[str] = None
@@ -140,13 +141,13 @@ def save_llm_news_json(
 
     else:
         raise ValueError("Unsupported data type for LLM news saving")
-
-    with open(file_path, "w", encoding="utf-8") as f:
-        json.dump(
-            payload,
-            f,
-            indent=2,
-            ensure_ascii=False,
-        )
+    if save_in_disk:
+        with open(file_path, "w", encoding="utf-8") as f:
+            json.dump(
+                payload,
+                f,
+                indent=2,
+                ensure_ascii=False,
+            )
 
     return payload    

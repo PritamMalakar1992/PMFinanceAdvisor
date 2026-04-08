@@ -60,7 +60,7 @@ async def main():
     #save_dataframe_as_json(screener_data_dataframe)
 
     df_final = scrape_from_multi_user()
-    df_final_json = save_dataframe_as_json(df_final, save_in_disk=False) 
+    df_final_json = save_dataframe_as_json(df_final, True, "stocks_fundamentals") 
 
     #save_json(await pick_stocks_with_consensus(df_final_json), "final_recomendation")
     save_json(await consolidate_with_consensus(df_final_json), "final_recomendation")

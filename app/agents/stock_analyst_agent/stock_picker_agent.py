@@ -2,17 +2,20 @@ import asyncio
 from collections import OrderedDict
 from typing import List, Any
 from agents import Agent, Runner, function_tool, trace, ModelSettings
+from app.agents.prompts.prompt_collection_backup import top_trader_agent_prompt_backup
 from app.agents.summarizer_agent.summarizer import analyze_stock_market_news
 from app.models.selected_stock import SelectedStock, StockSelectionOutput
 from app.utilities.firecrawl_utiliti import firecrawl_search_tool
-from app.agents.prompts.prompt_collection import top_trader_agent_prompt, elite_trader_agent_prompt
+from app.agents.prompts.prompt_collection import analysis_agent_prompt, analysis_agent_prompt_1
 from app.utilities.json_utiliti import save_dataframe_as_json, save_json
 from app.utilities.screener_scraper import scrape_from_multi_user
 
 
 stock_picker_agent = Agent(
     name="Top Short-Term Stock Trader",
-    instructions=top_trader_agent_prompt,
+    instructions=top_trader_agent_prompt_backup,
+    #instructions=analysis_agent_prompt_1, # New Try 1st
+    #instructions=analysis_agent_prompt, # New Try 2nd
     #instructions=elite_trader_agent_prompt,
     model="gpt-5-mini",
     tools=[analyze_stock_market_news, firecrawl_search_tool],
@@ -88,7 +91,7 @@ async def pick_stocks_with_consensus_tool(
     """
     
     df_final = scrape_from_multi_user()
-    df_final_json = save_dataframe_as_json(df_final, "stocks_from_child_agents")
+    df_final_json = save_dataframe_as_json(df_final, False, "stocks_fundamentals")
 
     result = await pick_stocks_with_consensus(df_final_json, n, capital, runs)
 

@@ -3,7 +3,8 @@ from typing import List
 
 from agents import Agent, Runner, trace
 
-from app.agents.prompts.prompt_collection import stock_judge_prompt
+from app.agents.prompts.prompt_collection import judge_agent_prompt, judge_agent_prompt_1, stock_judge_prompt
+from app.agents.prompts.prompt_collection_backup import stock_judge_prompt_backup
 from app.agents.stock_analyst_agent.stock_picker_agent import pick_stocks_with_consensus_tool
 from app.agents.summarizer_agent.summarizer import analyze_stock_market_news
 from app.utilities.firecrawl_utiliti import firecrawl_search_tool
@@ -11,7 +12,9 @@ from app.models.selected_stock import SelectedStock, StockSelectionOutput
 
 stock_picker_consolidation_agent = Agent(
     name="Stock Picker Judge & Consolidation Agent",
-    instructions=stock_judge_prompt,
+    instructions=stock_judge_prompt_backup,
+    #instructions=judge_agent_prompt_1, # New Try 1st
+    #instructions=judge_agent_prompt, # New Try 2nd
     model="gpt-5-mini",
     tools=[pick_stocks_with_consensus_tool, analyze_stock_market_news, firecrawl_search_tool],
     output_type=StockSelectionOutput,

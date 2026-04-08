@@ -76,4 +76,4 @@ async def analyze_stock_market_news(runs: int = 1):
     for index, news_item in enumerate(combined))
     
     combined_news= await summarize(news_list)  
-    return save_llm_news_json(combined_news, "summarized_news")["relevant_news"]    
+    return save_llm_news_json(combined_news, False, "summarized_news")["relevant_news"]    

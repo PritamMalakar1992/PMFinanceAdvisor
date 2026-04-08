@@ -25,11 +25,16 @@ class Configs:
     SCREENER_USER_1 = os.getenv("SCREENER_USER_1")
     SCREENER_USER_2 = os.getenv("SCREENER_USER_2")
     SCREENER_USER_3 = os.getenv("SCREENER_USER_3")
+    SCREENER_USER_4 = os.getenv("SCREENER_USER_4")
+    SCREENER_USER_5 = os.getenv("SCREENER_USER_5")
+
     SCREENER_PSWD = os.getenv("SCREENER_PSWD")
 
 
     SCREENER_CONFIGS = [
         {"username": SCREENER_USER_1},
         {"username": SCREENER_USER_2},
-        {"username": SCREENER_USER_3}
+        {"username": SCREENER_USER_3},
+        {"username": SCREENER_USER_4},
+        {"username": SCREENER_USER_5}
     ]
