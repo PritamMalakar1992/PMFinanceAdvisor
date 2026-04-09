@@ -6,17 +6,15 @@ from app.agents.prompts.prompt_collection_backup import top_trader_agent_prompt_
 from app.agents.summarizer_agent.summarizer import analyze_stock_market_news
 from app.models.selected_stock import SelectedStock, StockSelectionOutput
 from app.utilities.firecrawl_utiliti import firecrawl_search_tool
-from app.agents.prompts.prompt_collection import analysis_agent_prompt, analysis_agent_prompt_1
+from app.agents.prompts.prompt_collection import analysis_agent_prompt, analysis_agent_prompt_1, top_trader_agent_prompt
 from app.utilities.json_utiliti import save_dataframe_as_json, save_json
 from app.utilities.screener_scraper import scrape_from_multi_user
 
 
 stock_picker_agent = Agent(
     name="Top Short-Term Stock Trader",
-    instructions=top_trader_agent_prompt_backup,
-    #instructions=analysis_agent_prompt_1, # New Try 1st
-    #instructions=analysis_agent_prompt, # New Try 2nd
-    #instructions=elite_trader_agent_prompt,
+    instructions=top_trader_agent_prompt_backup, #Old
+    #instructions=top_trader_agent_prompt, # New
     model="gpt-5-mini",
     tools=[analyze_stock_market_news, firecrawl_search_tool],
     output_type=StockSelectionOutput,

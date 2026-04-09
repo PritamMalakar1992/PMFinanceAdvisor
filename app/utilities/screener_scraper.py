@@ -157,7 +157,7 @@ def scrape_from_multi_user():
     def worker(user):
         return scrape(user["username"])  # normal function
 
-    with ThreadPoolExecutor(max_workers=2) as executor:
+    with ThreadPoolExecutor(max_workers=10) as executor:
         df_list = list(executor.map(worker, Configs.SCREENER_CONFIGS))
 
     df_final = merge_dfs_on_name(
