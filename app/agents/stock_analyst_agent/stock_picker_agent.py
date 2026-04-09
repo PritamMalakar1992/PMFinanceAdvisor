@@ -6,7 +6,7 @@ from app.agents.prompts.prompt_collection_backup import top_trader_agent_prompt_
 from app.agents.summarizer_agent.summarizer import analyze_stock_market_news
 from app.models.selected_stock import SelectedStock, StockSelectionOutput
 from app.utilities.firecrawl_utiliti import firecrawl_search_tool
-from app.agents.prompts.prompt_collection import analysis_agent_prompt, analysis_agent_prompt_1, top_trader_agent_prompt
+from app.agents.prompts.prompt_collection import top_trader_agent_prompt
 from app.utilities.json_utiliti import save_dataframe_as_json, save_json
 from app.utilities.screener_scraper import scrape_from_multi_user
 

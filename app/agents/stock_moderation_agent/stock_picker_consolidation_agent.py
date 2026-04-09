@@ -3,7 +3,7 @@ from typing import List
 
 from agents import Agent, Runner, trace
 
-from app.agents.prompts.prompt_collection import judge_agent_prompt, judge_agent_prompt_1, stock_judge_prompt
+from app.agents.prompts.prompt_collection import stock_judge_prompt
 from app.agents.prompts.prompt_collection_backup import stock_judge_prompt_backup
 from app.agents.stock_analyst_agent.stock_picker_agent import pick_stocks_with_consensus_tool
 from app.agents.summarizer_agent.summarizer import analyze_stock_market_news

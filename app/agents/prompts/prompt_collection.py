@@ -66,11 +66,11 @@ FOR SELL:
 --------------------------------------
 FOR BUY:
 - 1W return > 0
-- AND 1W return >= 0.5 * 1M return
+- AND 1W return > ABS(1M return)
 
 FOR SELL:
 - 1W return < 0
-- AND 1W return <= 0.5 * 1M return
+- AND ABS(1W return) > ABS(1M return)
 
 --------------------------------------
 🔴 LIQUIDITY FILTER (MANDATORY)
@@ -81,11 +81,19 @@ FOR SELL:
 --------------------------------------
 🔴 VOLATILITY VALIDATION (ADDED)
 --------------------------------------
-- Stock MUST demonstrate ability to move ≥8% in short term:
-    ✔ ABS(3mth return) > 12
+🔴 REALISTIC MOVE VALIDATION (CRITICAL)
+
+- Target move (≥8%) must be realistically achievable using available data proxies:
+
+    ✔ ABS(1mth return) ≥ 6
     OR
-    ✔ Clear high-beta / large swing behavior
-- If stock typically moves <5–7% in short term → REJECT
+    ✔ ABS(1wk return) ≥ 3
+    OR
+    ✔ (52w High - 52w Low) / CMP ≥ 0.4
+
+- If NONE of the above conditions are satisfied → REJECT stock
+
+- This ensures the stock has demonstrated ability to move ≥8% in short time
 
 --------------------------------------
 MANDATORY NEWS INTEGRATION (STRICT)
@@ -126,10 +134,17 @@ FINAL CONFIDENCE = Initial Confidence + News Adjustment + Sentiment Adjustment
 --------------------------------------
 🔴 TARGET PRICE LOGIC (STRICT)
 --------------------------------------
-- For BUY:
-    target_price = CMP * (1.08 to 1.20 range)
-- For SELL (SHORT):
-    target_price = CMP * (0.80 to 0.92 range)
+🔴 UPSIDE / DOWNSIDE ROOM VALIDATION (MANDATORY)
+
+FOR BUY:
+- (52w High - CMP) / CMP ≥ 0.08
+- If upside room < 8% → REJECT (insufficient headroom)
+
+FOR SELL (SHORT):
+- (CMP - 52w Low) / CMP ≥ 0.08
+- If downside room < 8% → REJECT
+
+- Prevents selecting trades where target cannot be physically achieved
 
 VALIDATION RULE (VERY IMPORTANT):
 - Only assign target_price if:
@@ -158,6 +173,14 @@ FOR SELL (SHORT):
 - Prefer stocks near 52-week low
 - MUST satisfy RSI + MACD + DMA + volume rules
 - If price is holding strong / no breakdown → REJECT
+
+- Even if RSI/MACD conditions are satisfied, REJECT if:
+
+  ✘ Price is too close to 52w High (for BUY) with <8% room
+  ✘ Price is too close to 52w Low (for SELL) with <8% room
+  ✘ Weak overall momentum (1W and 1M both flat or conflicting)
+
+- Price structure MUST support uninterrupted move toward target
 
 --------------------------------------
 STEP 1: ADVANCED SCORING (0–22)
@@ -205,7 +228,7 @@ STEP 1: ADVANCED SCORING (0–22)
 
 6. SHORT-TERM MOMENTUM (0–3)
 - RSI valid zone → +1
-- MACD crossover → +1
+- MACD > MACD Signal AND MACD Prev <= MACD Signal Prev → +1
 - Acceleration + 1-day trigger → +1
 
 7. RISK (-2 to 0)
@@ -383,8 +406,6 @@ You are provided:
      ✔ Change in Prom Hold %
      ✔ Debt / Eq
      ✔ Profit growth %
-     ✔ 3mth return %
-     ✔ 6mth return %
      ✔ 1Yr return %
      ✔ RSI
      ✔ MACD, MACD Signal, MACD Prev, MACD Signal Prev
@@ -428,14 +449,15 @@ STEP 1 → Take consensus output as BASE
 STEP 2 → Re-score using df_final_json  
 STEP 3 → Validate breakout/breakdown  
 STEP 4 → Apply volatility filter  
-STEP 5 → Compute INITIAL CONFIDENCE  
-STEP 6 → REMOVE weak trades  
-STEP 7 → Scan df_final_json for BETTER opportunities  
-STEP 8 → CALL tools (STRICT)  
-STEP 9 → Apply NEWS + SENTIMENT  
-STEP 10 → FINAL FILTER  
-STEP 11 → CAPITAL ALLOCATION  
-STEP 12 → OUTPUT  
+STEP 5 → TARGET VALIDATION  
+STEP 6 → COMPUTE INITIAL CONFIDENCE  
+STEP 7 → REMOVE weak trades  
+STEP 8 → Scan df_final_json for BETTER opportunities  
+STEP 9 → CALL tools (STRICT)  
+STEP 10 → Apply NEWS + SENTIMENT  
+STEP 11 → FINAL FILTER  
+STEP 12 → CAPITAL ALLOCATION  
+STEP 13 → OUTPUT    
 
 --------------------------------------
 STEP 1: USE CONSENSUS OUTPUT (MANDATORY)
@@ -444,22 +466,35 @@ STEP 1: USE CONSENSUS OUTPUT (MANDATORY)
 - DO NOT skip them
 - DO NOT blindly accept them
 
+MOMENTUM_PROXY DEFINITION:
+
+IF (3mth return AVAILABLE):
+    MOMENTUM_PROXY = 3mth return
+
+ELSE:
+    MOMENTUM_PROXY = (1mth return × 2) + (1wk return × 1.5)
+
 --------------------------------------
 STEP 2: RE-SCORE USING df_final_json
 --------------------------------------
 
+DATA AVAILABILITY RULE:
+
+IF (3mth return OR 6mth return NOT PRESENT):
+    → DERIVE momentum using:
+        - 1mth return (weight ×2)
+        - 1wk return (weight ×1.5)
+        - 1day return (weight ×1)
+
+    → IGNORE 3mth and 6mth scoring blocks
+
 1. EXPLOSIVE MOMENTUM (0–6)
-- 3mth return:
+- MOMENTUM_PROXY:
     > 25% → +4
     12–25% → +3
     10–12% → +2
     0–10% → +1
     < 0% → -2
-
-- 6mth return:
-    > 30% → +1
-    > 12% → +0.5
-    < 0% → +0.5
 
 - 1Yr return:
     > 50% → +1
@@ -476,6 +511,12 @@ STEP 2: RE-SCORE USING df_final_json
     < -5% → -1
 
 - 1wk return >= 0.5 * 1mth return → +1
+
+ACCELERATION OVERRIDE:
+
+IF (1wk return > 6% AND 1day return > 2% AND MACD > MACD Signal AND MACD Prev <= MACD Signal Prev):
+    → +3 bonus
+    → IGNORE weak MOMENTUM_PROXY penalty
 
 3. EARNINGS SHOCK (0–4)
 - Qtr Profit Var %:
@@ -503,11 +544,13 @@ STEP 2: RE-SCORE USING df_final_json
     55–70 → +2
     40–55 → +1
     < 35 → +1
-    45–55 → REJECT
     > 75 → -1
 
+    SPECIAL CASE (EARLY BREAKOUT BOOST):
+    IF RSI in 45–55 AND MACD > MACD Signal AND MACD Prev <= MACD Signal Prev AND Vol 1d > Avg Vol 1Wk:
+        → +2
 - MACD:
-    MACD > Signal AND MACD Prev <= MACD Signal Prev → +3
+    MACD > MACD Signal AND MACD Prev <= MACD Signal Prev → +3
     MACD > Signal → +2
     MACD < Signal → -1
 
@@ -521,10 +564,19 @@ STEP 2: RE-SCORE USING df_final_json
 - 50 DMA > 200 DMA → +1
 
 8. VOLUME CONFIRMATION (0–4)
+
+- Vol 1d >= 0.8 × Avg Vol 1Wk → +1
 - Vol 1d > Avg Vol 1Wk → +2
 - Vol 1d > 1.5 × Avg Vol 1Wk → +3
 - Vol 1d > Avg Vol 1Mth → +1
-- Low volume → -2
+
+EARLY BREAKOUT SUPPORT:
+IF (MACD > MACD Signal AND MACD Prev <= MACD Signal Prev AND RSI > 45 AND 1day return > 1%)
+    → +1
+
+LOW PARTICIPATION FILTER:
+IF (Vol 1d < 0.5 × Avg Vol 1Wk AND ABS(1day return) < 1%)
+    → -2
 
 9. 52-WEEK POSITIONING (0–2)
 - Within 10% of 52w High → +1
@@ -544,24 +596,68 @@ STEP 3: BREAKOUT / BREAKDOWN VALIDATION
 --------------------------------------
 
 BUY:
-✔ 3mth return > 12  
-✔ earnings support  
+✔ (MOMENTUM_PROXY > 12 OR 1mth return > 8 OR strong acceleration)
+✔ AND (MACD bullish OR price near 52w high OR CMP > 50DMA)
+✔ AND earnings support
+
+ELSE → REJECT
 
 SELL (SHORT):
-✔ 3mth return < -12  
+✔ MOMENTUM_PROXY < -12  
 ✔ OR weakening after rally  
 ✔ OR profit growth negative  
 
 If unclear → REJECT
 
+FAKE BREAKOUT FILTER:
+
+IF:
+    (1day return > 3%)
+    AND (Vol 1d < Avg Vol 1Wk)
+    AND (RSI > 70)
+THEN:
+    → REJECT (likely exhaustion spike)
+
+PRICE STRUCTURE CONFIRMATION:
+
+BUY:
+✔ CMP within 5% of 52w High
+✔ OR CMP breaking above recent resistance (proxied by 50 DMA or recent highs)
+✔ OR (CMP > 50 DMA AND 50 DMA > 50 DMA prev AND 1mth return > 5%)
+
+SELL:
+✔ CMP near breakdown (below 50 DMA or losing 200 DMA)    
+
+RANGE EXPANSION TRIGGER:
+
+IF:
+    (1day return > 2%)
+    AND (1wk return > 4%)
+    AND (Vol 1d >= Avg Vol 1Wk)
+
+THEN:
+    → STRONG BUY CONFIRMATION (+ confidence boost)
+
+OVEREXTENSION FILTER:
+
+IF:
+    (1Yr return > 80%)
+    AND (1mth return < 3%)
+    AND (RSI < 55)
+
+THEN:
+    → REJECT (momentum exhaustion likely)
+    
 --------------------------------------
 STEP 4: VOLATILITY FILTER (HARD)
 --------------------------------------
 
 MUST satisfy:
-✔ ABS(3mth return) > 12  
+✔ ABS(MOMENTUM_PROXY) > 12  
 OR  
 ✔ Strong earnings shock (>40% or < -25%)
+OR  
+✔ ACCELERATION OVERRIDE triggered
 
 Else → REJECT
 
@@ -601,10 +697,31 @@ Penalty:
 -10 Debt > 2  
 -20 low volatility  
 -25 weak confirmation  
--15 RSI neutral  
--20 no volume  
--20 misalignment  
--15 weak breakout  
+-10 no volume  
+-10 misalignment  
+-10 weak breakout  
+
+--------------------------------------
+CONFIDENCE NORMALIZATION RULE
+--------------------------------------
+
+IF multiple signals come from SAME category:
+
+- Momentum (1wk, 1mth, acceleration)
+- Technicals (RSI, MACD, DMA)
+- Volume
+
+THEN:
+    Cap contribution per category:
+
+    Momentum max → +15
+    Technical max → +15
+    Volume max → +10
+
+→ Apply AFTER all additions/penalties
+→ Clamp category totals to max limits
+
+--------------------------------------
 
 Cap = 98
 
