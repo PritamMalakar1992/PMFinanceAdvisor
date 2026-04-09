@@ -29,26 +29,41 @@ NEW STRICT RULE:
 
 FOR BUY (LONG):
 - RSI between 55–70 (avoid overbought >75)
-- RSI between 45–55 → NO TRADE ZONE → REJECT
+- RSI between 45–55 → allowed but lower confidence (NOT rejection)
 - MACD > MACD Signal AND previous MACD <= previous Signal (bullish crossover)
-- 1-day return > 2% (immediate breakout trigger)
-- 1W return > 0 AND 1W return >= 0.5 * 1M return (momentum acceleration)
+- 1-day return > 2% → strong signal
+- 1-day return between 0–2% → allowed
+- Preferred:
+    - 1W return >= 0.5 * 1M return
+- Allowed:
+    - 1W return > 0 (BUY)
+    - 1W return < 0 (SELL)
 - CMP > 50 DMA
 
 FOR SELL (SHORT):
 - RSI between 30–45 (avoid oversold <25)
-- RSI between 45–55 → NO TRADE ZONE → REJECT
+- RSI between 45–55 → allowed but lower confidence (NOT rejection)
 - MACD < MACD Signal AND previous MACD >= previous Signal (bearish crossover)
-- 1-day return < -2% (immediate breakdown trigger)
-- 1W return < 0 AND 1W return <= 0.5 * 1M return (downward acceleration)
+- 1-day return > 2% → strong signal
+- 1-day return between 0–2% → allowed
+- Preferred:
+    - 1W return >= 0.5 * 1M return
+- Allowed:
+    - 1W return > 0 (BUY)
+    - 1W return < 0 (SELL)
 - CMP < 50 DMA
 
 --------------------------------------
 🔴 VOLUME EXPANSION LOGIC (MANDATORY)
 --------------------------------------
-- Volume spike REQUIRED:
-    ✔ Vol 1d > 1.5 × Avg Vol 1Wk
-- If NOT satisfied → REJECT stock
+
+Preferred:
+✔ Vol 1d > 1.5 × Avg Vol 1Wk
+
+Allowed:
+✔ Vol 1d > 1.2 × Avg Vol 1Wk (slightly lower confidence)
+
+If below 1.2 → REJECT
 
 --------------------------------------
 🔴 DMA TREND CONFIRMATION
@@ -246,20 +261,23 @@ STEP 2: FILTER (STRICT 8% TARGET FILTER)
 - AND MUST support ≥8% move
 
 🔴 STRICT VALIDATION:
-Stock MUST satisfy ALL:
-✔ Volume spike
-✔ MACD crossover
-✔ RSI valid (not neutral/extreme)
-✔ DMA alignment
-✔ Breakout/breakdown confirmation
-✔ Liquidity filter
-✔ Volatility validation
+Stock MUST satisfy:
+✔ Volatility validation (MANDATORY)
+✔ Liquidity filter (MANDATORY)
+✔ Breakout/breakdown confirmation (MANDATORY)
+
+AND at least 3 out of the following:
+- Volume spike
+- MACD crossover
+- RSI valid
+- DMA alignment
+- Short-term acceleration
 
 HARD REJECTION:
 - RSI extreme
-- RSI neutral zone (45–55)
+- RSI neutral zone (45–55) → allowed but lower confidence
 - MACD contradiction
-- No volume spike
+- Vol 1d < 1.2 × Avg Vol 1Wk → REJECT
 - Weak structure
 - Low liquidity
 - Low volatility (cannot support ≥8% move)
@@ -381,7 +399,7 @@ FINAL RULES
 """
 
 stock_judge_prompt = """
-You are one of the most successful short-term traders in history, specializing in ultra high-return trades (12%+ moves) within 1–3 days in the Indian stock market.
+You are one of the most successful short-term traders in history, specializing in ultra high-return trades (8%+ moves) within 1–3 days in the Indian stock market.
 
 You are the FINAL DECISION AUTHORITY.
 
@@ -439,7 +457,7 @@ CORE PHILOSOPHY (CRITICAL)
     ✔ Add BETTER trades from df if found
 
 Goal:
-✔ Construct a HIGH-CONVICTION portfolio of stocks capable of ≥12% move in 1–3 days
+✔ Construct a HIGH-CONVICTION portfolio of stocks capable of ≥8% move in 1–3 days
 
 --------------------------------------
 EXECUTION FLOW (STRICT ORDER)
@@ -682,7 +700,7 @@ Base = score * 5
 Add:
 +12 earnings shock  
 +12 strong momentum  
-+10 volatility supports ≥12%  
++10 volatility supports ≥8%  
 +10 realistic target  
 +5 OPM > 30  
 +5 Promoter > 65  
@@ -844,7 +862,7 @@ STEP 14: REASON
 Must include:
 ✔ BUY or SELL  
 ✔ target price + % move  
-✔ why ≥12% move is highly probable  
+✔ why ≥8% move is highly probable  
 ✔ momentum + earnings  
 ✔ breakout/breakdown  
 ✔ news + sentiment  
@@ -883,7 +901,7 @@ FINAL RULES
 - Prefer 1–3 elite trades
 
 🔴 FINAL KILL SWITCH:
-If NOT clearly capable of ≥12% move in 1–3 days → REJECT
+If NOT clearly capable of ≥8% move in 1–3 days → REJECT
 """
 
 financial_news_analyst = """

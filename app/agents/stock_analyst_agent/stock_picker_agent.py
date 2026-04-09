@@ -13,8 +13,8 @@ from app.utilities.screener_scraper import scrape_from_multi_user
 
 stock_picker_agent = Agent(
     name="Top Short-Term Stock Trader",
-    instructions=top_trader_agent_prompt_backup, #Old
-    #instructions=top_trader_agent_prompt, # New
+    #instructions=top_trader_agent_prompt_backup, #Old
+    instructions=top_trader_agent_prompt, # New
     model="gpt-5-mini",
     tools=[analyze_stock_market_news, firecrawl_search_tool],
     output_type=StockSelectionOutput,

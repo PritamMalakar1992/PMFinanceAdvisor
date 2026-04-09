@@ -1,4 +1,4 @@
-from app.agents.stock_analyst_agent.stock_picker_agent import pick_stocks_once, pick_stocks_with_consensus
+from app.agents.stock_analyst_agent.stock_picker_agent import pick_stocks_once, pick_stocks_with_consensus, pick_stocks_with_consensus_tool
 from app.agents.stock_moderation_agent.stock_picker_consolidation_agent import consolidate_with_consensus
 from app.agents.summarizer_agent.summarizer import summarize, summarize_with_iterations
 from app.news_services.news_injest_services import NewsAPIService, MarketauxService, FinnhubService, NewsDataService, WorldNewsAPIService

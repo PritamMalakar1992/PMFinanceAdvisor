@@ -12,8 +12,8 @@ from app.models.selected_stock import SelectedStock, StockSelectionOutput
 
 stock_picker_consolidation_agent = Agent(
     name="Stock Picker Judge & Consolidation Agent",
-    instructions=stock_judge_prompt_backup, #Old
-    #instructions=stock_judge_prompt, #New
+    #instructions=stock_judge_prompt_backup, #Old
+    instructions=stock_judge_prompt, #New
     model="gpt-5-mini",
     tools=[pick_stocks_with_consensus_tool, analyze_stock_market_news, firecrawl_search_tool],
     output_type=StockSelectionOutput,
