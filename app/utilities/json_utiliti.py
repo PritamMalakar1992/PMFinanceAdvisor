@@ -4,7 +4,7 @@ import json
 from typing import Optional, List, Any
 import pandas as pd
 from pydantic import FilePath
-
+import os
 
 def _to_dict(item: Any) -> dict:
     if hasattr(item, "model_dump"):
@@ -109,7 +109,7 @@ def save_dataframe_as_json(
 
     if save_in_disk:
         with open(file_path, "w", encoding="utf-8") as f:
-            json.dump(json_data, f, indent=4, ensure_ascii=False)
+            json.dump(df_json_data, f, indent=4, ensure_ascii=False)
 
     print(f"JSON saved at: {file_path}")
     return df_json_data      
@@ -151,3 +151,21 @@ def save_llm_news_json(
             )
 
     return payload    
+
+def load_dataframe_from_json(
+    filename: str = "newfile.json",
+    folder_name: Optional[str] = "json_outputs"
+) -> pd.DataFrame:
+
+    file_path = f"{folder_name}\\{filename}.json"
+
+    if not os.path.exists(file_path):
+        raise FileNotFoundError(f"File not found: {file_path}")
+
+    with open(file_path, "r", encoding="utf-8") as f:
+        json_data = json.load(f)
+
+    df = pd.DataFrame(json_data)
+
+    print(f"DataFrame loaded from: {file_path}")
+    return df

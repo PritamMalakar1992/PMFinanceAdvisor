@@ -5,7 +5,7 @@ from app.news_services.news_injest_services import NewsAPIService, MarketauxServ
 from app.stock_services.nse_stock_info_service import NseService
 from app.stock_services.yahoo_stock_info_service import StockService
 from app.stock_services.indian_stock_info_service import IndianStockService
-from app.utilities.json_utiliti import save_json, save_json_without_index, save_dataframe_as_json, save_llm_news_json
+from app.utilities.json_utiliti import load_dataframe_from_json, save_json, save_json_without_index, save_dataframe_as_json, save_llm_news_json
 from app.utilities.firecrawl_utiliti import FirecrawlService
 from app.utilities.screener_scraper import scrape, scrape_from_multi_user
 from .configs_constants.configs import Configs
@@ -59,9 +59,11 @@ async def main():
     #screener_data_dataframe = scrape()
     #save_dataframe_as_json(screener_data_dataframe)
 
-    df_final = scrape_from_multi_user()
-    df_final_json = save_dataframe_as_json(df_final, True, "stocks_fundamentals") 
-
+    #df_final = scrape_from_multi_user()
+    #df_final_json = save_dataframe_as_json(df_final, True, "stocks_fundamentals") 
+    
+    df_final_json = load_dataframe_from_json("stocks_fundamentals-2026-04-17_08-05-PM")
+    
     #save_json(await pick_stocks_with_consensus(df_final_json), "final_recomendation")
     save_json(await consolidate_with_consensus(df_final_json), "final_recomendation")
 

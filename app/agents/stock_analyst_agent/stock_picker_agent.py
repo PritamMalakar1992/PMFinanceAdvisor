@@ -7,15 +7,15 @@ from app.agents.summarizer_agent.summarizer import analyze_stock_market_news
 from app.models.selected_stock import SelectedStock, StockSelectionOutput
 from app.utilities.firecrawl_utiliti import firecrawl_search_tool
 from app.agents.prompts.prompt_collection import top_trader_agent_prompt
-from app.utilities.json_utiliti import save_dataframe_as_json, save_json
+from app.utilities.json_utiliti import load_dataframe_from_json, save_dataframe_as_json, save_json
 from app.utilities.screener_scraper import scrape_from_multi_user
 
 
 stock_picker_agent = Agent(
     name="Top Short-Term Stock Trader",
-    #instructions=top_trader_agent_prompt_backup, #Old
-    instructions=top_trader_agent_prompt, # New
-    model="gpt-5-mini",
+    instructions=top_trader_agent_prompt_backup, #Old
+    #instructions=top_trader_agent_prompt, # New
+    model="gpt-5.4",
     tools=[analyze_stock_market_news, firecrawl_search_tool],
     output_type=StockSelectionOutput,
     #model_settings=ModelSettings(temperature=0)
@@ -88,9 +88,10 @@ async def pick_stocks_with_consensus_tool(
     Only high-conviction, fast-moving, and technically confirmed trades are included.
     """
     
-    df_final = scrape_from_multi_user()
-    df_final_json = save_dataframe_as_json(df_final, False, "stocks_fundamentals")
+    #df_final = scrape_from_multi_user()
+    #df_final_json = save_dataframe_as_json(df_final, False, "stocks_fundamentals")
 
+    df_final_json = load_dataframe_from_json("stocks_fundamentals-2026-04-17_08-05-PM")
     result = await pick_stocks_with_consensus(df_final_json, n, capital, runs)
 
     save_json(result, "final_recomendation_from_child_agents")
